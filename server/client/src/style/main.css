@@ -1,49 +1,117 @@
+@charset "UTF-8";
 .dashboard {
-  margin: 0; }
+  background-color: #dcedf6; }
 
-.navbar {
+.Navbar {
   height: 100vh;
-  background-color: darkgray;
-  color: #383736;
-  font-weight: 600;
-  font-size: 13px;
-  font-family: proxima-nova, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
-  position: relative; }
-  .navbar .content {
-    margin: auto; }
-    .navbar .content .menu_list ul li {
-      animation: ComeIn;
-      animation-duration: 1s;
-      list-style: none;
-      margin-top: 20%;
-      margin-bottom: 20%; }
-      .navbar .content .menu_list ul li button {
-        border: 2px #383736 solid;
-        border-radius: 4px;
-        text-transform: uppercase;
-        outline: 0;
-        overflow: hidden;
-        background: none;
-        width: 10rem;
-        height: 2rem;
-        letter-spacing: 2px;
-        text-align: center;
-        transition: 0.6s; }
-        .navbar .content .menu_list ul li button:hover {
-          background-color: #383736;
-          color: white;
-          transform: translateY(-2px); }
+  background-color: #1c7cd5;
+  color: white; }
+  .Navbar .head {
+    height: 105px;
+    background-color: #196ebe;
+    text-align: center; }
+  .Navbar .content ul li {
+    cursor: pointer;
+    margin-bottom: 1%;
+    height: 60px;
+    display: block; }
+    .Navbar .content ul li button {
+      margin-left: 20%;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 14px;
+      vertical-align: middle;
+      display: inline-block; }
+      .Navbar .content ul li button i {
+        margin-right: 10px;
+        color: #a5a4bf; }
+    .Navbar .content ul li:before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%; }
+    .Navbar .content ul li:hover:before {
+      /* display: inline-block;
+        content: $breaking_space;
+        background-color: #56c0e0;
+        width: 3px;
+        margin-right: 5%;
+        height: 100%;*/
+      content: " ";
+      background-color: #56c0e0;
+      display: inline-block;
+      vertical-align: middle;
+      height: 90%;
+      transition: 0.5s; }
 
-@keyframes ComeIn {
-  0% {
-    transform: translate(-200px, 0px); }
-  80% {
-    transform: translate(20px, 0px); }
-  100% {
-    transform: translate(0px, 0px); } }
+.Utils {
+  height: 70px;
+  background-color: #ffffff;
+  box-shadow: 0px 0.1px;
+  line-height: 60px;
+  width: 100%; }
+  .Utils .right ul li {
+    display: inline;
+    margin: 10px; }
+    .Utils .right ul li i {
+      color: #bcbccb; }
+    .Utils .right ul li img {
+      width: 40px;
+      height: 40px; }
+    .Utils .right ul li span {
+      color: #4d4f5c;
+      font-size: 13px; }
+    .Utils .right ul li hr {
+      display: inline;
+      border: none;
+      border-left: 1px solid #73848c;
+      border-color: #ebebf2; }
 
-.utils {
-  background-color: #fbfbfb; }
+.mails {
+  background-color: white;
+  width: 100%;
+  height: 80%;
+  margin-top: 5%;
+  box-shadow: 0px 0.2px;
+  font-family: "Source Sans Pro", sans-serif; }
+  .mails .folders {
+    font-size: 13px;
+    height: 100%;
+    width: 15%;
+    border-right: 1px solid #f1f1f3; }
+    .mails .folders ul {
+      list-style: none; }
+      .mails .folders ul .compose {
+        border: 1px solid #f1f1f3;
+        padding: 20%;
+        text-align: center; }
+      .mails .folders ul li {
+        margin-bottom: 10%; }
+        .mails .folders ul li a {
+          margin-left: 10%;
+          color: #4d4f5c !important; }
+  .mails .content {
+    width: 85%; }
+    .mails .content .SearchBar {
+      width: 100%;
+      border: 1px solid #f1f1f3; }
+    .mails .content .EmailList {
+      height: 735px;
+      overflow: auto;
+      color: #4d4f5c; }
+      .mails .content .EmailList ul li {
+        height: 70px;
+        line-height: 200%;
+        list-style: none; }
+        .mails .content .EmailList ul li .info {
+          overflow: auto;
+          width: 90%; }
+          .mails .content .EmailList ul li .info .date {
+            font-size: 11px; }
+          .mails .content .EmailList ul li .info .name {
+            font-size: 13px;
+            font-weight: bold; }
 
 * {
   margin: 0;
@@ -51,20 +119,11 @@
   box-sizing: border-box; }
 
 html {
-  font-family: "Lato", "Arial", sans-serif;
-  font-weight: 300;
-  font-size: 20px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 200;
+  font-size: 15px;
   text-rendering: optimizeLegibility;
   box-sizing: border-box; }
-
-.box {
-  margin: 0 !important; }
-
-.row {
-  margin: 0; }
-
-.container-fluid {
-  padding: 0; }
 
 .col {
   padding: 0; }
