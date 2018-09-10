@@ -4,7 +4,7 @@ const Folders = () => {
   return (
     <ul>
       <li className="compose">
-        <button class="btn btn-primary">Compose</button>
+        <button className="btn btn-primary">Compose</button>
       </li>
       <li>
         <a href="#">Inbox</a>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import "../style/main.css";
-//import "../style/grid.css";
 import { BrowserRouter, Route } from "react-router-dom";
+import "../style/main.css";
 import Dashboard from "./Dashboard";
 // test
 import axios from "axios";

@@ -38,7 +38,7 @@ module.exports = app => {
         console.log("Error: " + err.toString());
       } else {
         response.parts.forEach(data => {
-          var subject, name, from, content;
+          var subject, name, from, content, date;
           data.body.payload.headers.forEach(header => {
             switch (header.name) {
               case "From":
@@ -47,14 +47,20 @@ module.exports = app => {
               case "Subject":
                 subject = header.value;
                 break;
+              case "Date":
+                date = header.value;
+                break;
               default:
                 break;
             }
           });
+          console.log(from);
+          from = from.split("<");
           const email = {
             id: data.body.id,
-            name: null,
-            from: from,
+            name: from[0],
+            from: from[from.length - 1].split(">")[0],
+            date: date,
             subject: subject,
             content: !data.body.payload.parts
               ? base64url.decode(data.body.payload.body.data)

@@ -17,6 +17,7 @@ const Mails = () => {
           <EmailList />
         </div>
       </div>
+      <div className="clear-fix" />
     </div>
   );
 };
