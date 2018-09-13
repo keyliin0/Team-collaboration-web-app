@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
 import Mails from "./mail/Mails";
 import Utils from "./Utils";
@@ -15,7 +15,11 @@ export default class Dashboard extends Component {
             </div>
             <div className="col col-10">
               <Utils />
-              <Mails />
+              <BrowserRouter>
+                <div>
+                  <Route path={"/mail/:label/:page"} component={Mails} />
+                </div>
+              </BrowserRouter>
             </div>
           </div>
         </div>

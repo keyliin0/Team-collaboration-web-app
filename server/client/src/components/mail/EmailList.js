@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import { FETCH_EMAILS } from "../../actions/types";
+import { withRouter } from "react-router-dom";
 
 class EmailList extends Component {
   componentWillMount() {
-    this.props.FetchEmails();
+    this.props.FetchEmails(
+      "default",
+      FETCH_EMAILS,
+      this.props.match.params.label
+    );
   }
   RenderEmails() {
-    console.log(this.props.emails);
-    return this.props.emails.map(email => {
+    return this.props.messages.emails.map(email => {
       return (
         <li key={email.id}>
           <div className="info">
@@ -25,18 +30,24 @@ class EmailList extends Component {
     });
   }
   render() {
-    if (!this.props.emails.length) {
+    if (!this.props.messages.emails) {
       return <div className="loader" />;
     }
-    return <ul>{this.RenderEmails()}</ul>;
+    return (
+      <div className="EmailList">
+        <ul>{this.RenderEmails()}</ul>
+      </div>
+    );
   }
 }
 
 function mapStateToProps({ emails }) {
-  return { emails };
+  return { messages: emails };
 }
 
-export default connect(
-  mapStateToProps,
-  actions
-)(EmailList);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    actions
+  )(EmailList)
+);

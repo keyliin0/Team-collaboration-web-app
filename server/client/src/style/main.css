@@ -181,6 +181,9 @@
   100% {
     transform: rotate(360deg); } }
 
+.disabled-icon {
+  opacity: 0.5; }
+
 * {
   margin: 0;
   padding: 0;

@@ -13,9 +13,8 @@ const Mails = () => {
         <div className="SearchBar">
           <SearchEmails />
         </div>
-        <div className="EmailList">
-          <EmailList />
-        </div>
+
+        <EmailList />
       </div>
       <div className="clear-fix" />
     </div>

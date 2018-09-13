@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Folders = () => {
   return (
@@ -7,11 +8,11 @@ const Folders = () => {
         <button className="btn btn-primary">Compose</button>
       </li>
       <li>
-        <a href="#">Inbox</a>
+        <Link to="/mail/INBOX/default">Inbox</Link>
       </li>
 
       <li>
-        <a href="#">Sent</a>
+        <Link to="/mail/SENT/default">Sent</Link>
       </li>
 
       <li>
