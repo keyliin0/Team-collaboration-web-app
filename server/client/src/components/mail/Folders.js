@@ -1,32 +1,43 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
+import { FETCH_EMAILS } from "../../actions/types";
 
-const Folders = () => {
-  return (
-    <ul>
-      <li className="compose">
-        <button className="btn btn-primary">Compose</button>
-      </li>
-      <li>
-        <Link to="/mail/INBOX/default">Inbox</Link>
-      </li>
+class Folders extends Component {
+  handleClick(label) {
+    this.props.ClearEmails();
+    this.props.FetchEmails("default", FETCH_EMAILS, label);
+  }
+  render() {
+    return (
+      <ul>
+        <li className="compose">
+          <button className="btn btn-primary">Compose</button>
+        </li>
+        <li>
+          <span onClick={() => this.handleClick("INBOX")}>Inbox</span>
+        </li>
 
-      <li>
-        <Link to="/mail/SENT/default">Sent</Link>
-      </li>
+        <li>
+          <span onClick={() => this.handleClick("SENT")}>Sent</span>
+        </li>
 
-      <li>
-        <a href="#">Drafts</a>
-      </li>
+        <li>
+          <span onClick={() => this.handleClick("DRAFT")}>Drafts</span>
+        </li>
 
-      <li>
-        <a href="#">Spam</a>
-      </li>
-      <li>
-        <a href="#">Trash</a>
-      </li>
-    </ul>
-  );
-};
+        <li>
+          <span onClick={() => this.handleClick("SPAM")}>Spam</span>
+        </li>
+        <li>
+          <span onClick={() => this.handleClick("TRASH")}>Trash</span>
+        </li>
+      </ul>
+    );
+  }
+}
 
-export default Folders;
+export default connect(
+  null,
+  actions
+)(Folders);

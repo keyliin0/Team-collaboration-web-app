@@ -6,6 +6,7 @@ const mainURL = "https://www.googleapis.com/gmail/v1/users/";
 const base64url = require("base64url");
 
 module.exports = app => {
+  // get messages
   app.get(
     "/api/mail/messages/:label/:nextpage",
     RequireLogin,
@@ -91,6 +92,7 @@ module.exports = app => {
       });
     }
   );
+  // delete a message
   app.post("/api/mail/delete", RequireLogin, CheckToken, async (req, res) => {
     try {
       const request = await axios.post(
@@ -105,6 +107,7 @@ module.exports = app => {
       res.status(401).send("error");
     }
   });
+  // modify a message
   app.post("/api/mail/modify", RequireLogin, CheckToken, async (req, res) => {
     try {
       const request = await axios.post(

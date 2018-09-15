@@ -6,11 +6,7 @@ import { withRouter } from "react-router-dom";
 
 class EmailList extends Component {
   componentWillMount() {
-    this.props.FetchEmails(
-      "default",
-      FETCH_EMAILS,
-      this.props.match.params.label
-    );
+    this.props.FetchEmails("default", FETCH_EMAILS, "INBOX");
   }
   RenderEmails() {
     return this.props.messages.emails.map(email => {

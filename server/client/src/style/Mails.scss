@@ -19,16 +19,17 @@
       }
       & li {
         margin-bottom: 10%;
-        & a {
+        & span {
           margin-left: 10%;
           color: #4d4f5c !important;
+          cursor: pointer;
         }
       }
     }
   }
   & .content {
     width: 85%;
-    & .SearchBar {
+    & .Toolbox {
       width: 100%;
       border: 1px solid #f1f1f3;
       i {

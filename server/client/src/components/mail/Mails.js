@@ -1,6 +1,6 @@
 import React from "react";
 import Folders from "./Folders";
-import SearchEmails from "./SearchEmails";
+import Toolbox from "./Toolbox";
 import EmailList from "./EmailList";
 
 const Mails = () => {
@@ -10,8 +10,8 @@ const Mails = () => {
         <Folders />
       </div>
       <div className="content float-left">
-        <div className="SearchBar">
-          <SearchEmails />
+        <div className="Toolbox">
+          <Toolbox />
         </div>
 
         <EmailList />
