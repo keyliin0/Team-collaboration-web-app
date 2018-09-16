@@ -2,6 +2,8 @@ import React from "react";
 import Folders from "./Folders";
 import Toolbox from "./Toolbox";
 import EmailList from "./EmailList";
+import ReadEmail from "./ReadEmail";
+import { Switch, Router, Route } from "react-router-dom";
 
 const Mails = () => {
   return (
@@ -13,8 +15,10 @@ const Mails = () => {
         <div className="Toolbox">
           <Toolbox />
         </div>
-
-        <EmailList />
+        <Switch>
+          <Route path="/mail/list" component={EmailList} />
+          <Route path="/mail/read/:id" component={ReadEmail} />
+        </Switch>
       </div>
       <div className="clear-fix" />
     </div>

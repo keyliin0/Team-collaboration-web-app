@@ -5,6 +5,27 @@
   margin-top: 5%;
   box-shadow: 0px 0.2px;
   font-family: "Source Sans Pro", sans-serif;
+  & .ReadEmail {
+    text-align: center;
+    & .subject {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    & .info {
+      margin-top: 1%;
+      margin-bottom: 1%;
+      margin-left: 10%;
+      margin-right: 10%;
+      & .name {
+        font-weight: bold;
+      }
+    }
+    & .content {
+      margin: auto;
+      height: 60vh;
+      overflow-y: auto;
+    }
+  }
   & .folders {
     font-size: 13px;
     height: 100%;

@@ -12,11 +12,13 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "lodash": "^4.17.11",
     "materialize": "^1.0.0",
     "materialize-css": "^0.100.2",
     "node-sass": "^4.9.3",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
+    "react-html-parser": "^2.0.2",
     "react-infinite-scroller": "^1.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",

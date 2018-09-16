@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {
   FETCH_EMAILS,
   FETCH_PREVIOUS_EMAILS,
@@ -15,7 +16,7 @@ export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_EMAILS:
       return {
-        emails: action.payload.messages,
+        emails: _.mapKeys(action.payload.messages, "id"),
         previous: [...state.previous, action.page],
         nextpage: action.payload.nextpage,
         label: action.label,
@@ -25,7 +26,7 @@ export default function(state = INITIAL_STATE, action) {
       var previous = state.previous;
       previous.pop();
       return {
-        emails: action.payload.messages,
+        emails: _.mapKeys(action.payload.messages, "id"),
         previous: previous,
         nextpage: action.payload.nextpage,
         label: action.label,
