@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../../actions";
-import { FETCH_EMAILS } from "../../actions/types";
+import * as actions from "../../../actions";
+import { FETCH_EMAILS } from "../../../actions/types";
 
 class NextEmails extends Component {
   constructor(props) {

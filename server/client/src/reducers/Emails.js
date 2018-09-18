@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   emails: null,
   previous: [],
   nextpage: null,
-  loading: true
+  loading: false
 };
 
 export default function(state = INITIAL_STATE, action) {

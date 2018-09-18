@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../../actions";
+import * as actions from "../../../actions";
 import SearchEmails from "./SearchEmails";
 import NextEmails from "./NextEmails";
 import PreviousEmails from "./PreviousEmails";
@@ -8,7 +8,7 @@ import PreviousEmails from "./PreviousEmails";
 class Toolbox extends Component {
   render() {
     return (
-      <div>
+      <div className="Toolbox">
         <SearchEmails />
         <i className="far fa-trash-alt" title="Delete" />
         <i className="far fa-envelope-open" title="Mark as unread" />

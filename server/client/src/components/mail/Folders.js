@@ -2,10 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import { FETCH_EMAILS } from "../../actions/types";
+import { withRouter } from "react-router-dom";
+import { EmailList_PATH } from "./RoutesVars";
 
 class Folders extends Component {
   handleClick(label) {
+    // in case the user is reading an email and want to navigate to another folder
+    // make him go to the emails list router first to avoid errors
     this.props.ClearEmails();
+    if (this.props.location.pathname.toLowerCase() !== EmailList_PATH) {
+      this.props.history.push(EmailList_PATH);
+    }
     this.props.FetchEmails("default", FETCH_EMAILS, label);
   }
   render() {
@@ -37,7 +44,9 @@ class Folders extends Component {
   }
 }
 
-export default connect(
-  null,
-  actions
-)(Folders);
+export default withRouter(
+  connect(
+    null,
+    actions
+  )(Folders)
+);
