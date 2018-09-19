@@ -12,14 +12,17 @@ class EmailList extends Component {
     if (!this.props.messages.loading && !this.props.messages.emails)
       this.props.FetchEmails("default", FETCH_EMAILS, "INBOX");
   }
-
   RenderEmails() {
     return _.map(this.props.messages.emails, email => {
       return (
         <li key={email.id}>
           <div className="info">
             <label className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" />
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                onClick={event => this.props.Select_Email(event, email.id)}
+              />
               <span className="custom-control-indicator" />
             </label>
             <Link to={"/mail/read/" + email.id}>

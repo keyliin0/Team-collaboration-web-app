@@ -121,7 +121,7 @@ module.exports = app => {
           removeLabelIds: req.body.removelabels
         }
       );
-      res.send(request.data);
+      res.send("emails deleted");
     } catch (err) {
       res.status(401).send("error");
     }

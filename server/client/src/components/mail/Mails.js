@@ -2,7 +2,7 @@ import React from "react";
 import Folders from "./Folders";
 import Toolbox from "./toolbox/Toolbox";
 import EmailList from "./EmailList";
-import ReadEmail from "./ReadEmail";
+import ReadEmail from "./read_email/ReadEmail";
 import { Switch, Router, Route } from "react-router-dom";
 import { EmailList_PATH, ReadEmail_PATH } from "./RoutesVars";
 

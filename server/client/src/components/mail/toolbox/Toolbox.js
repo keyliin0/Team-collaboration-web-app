@@ -4,13 +4,14 @@ import * as actions from "../../../actions";
 import SearchEmails from "./SearchEmails";
 import NextEmails from "./NextEmails";
 import PreviousEmails from "./PreviousEmails";
+import DeleteEmail from "./DeleteEmail";
 
 class Toolbox extends Component {
   render() {
     return (
       <div className="Toolbox">
         <SearchEmails />
-        <i className="far fa-trash-alt" title="Delete" />
+        <DeleteEmail />
         <i className="far fa-envelope-open" title="Mark as unread" />
         <i className="far fa-envelope" title="Mark as read" />
         <PreviousEmails />

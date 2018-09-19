@@ -16,20 +16,20 @@ export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_EMAILS:
       return {
-        emails: _.mapKeys(action.payload.messages, "id"),
-        previous: [...state.previous, action.page],
-        nextpage: action.payload.nextpage,
-        label: action.label,
+        emails: _.mapKeys(action.payload.data.messages, "id"),
+        previous: [...state.previous, action.payload.page],
+        nextpage: action.payload.data.nextpage,
+        label: action.payload.label,
         loading: false
       };
     case FETCH_PREVIOUS_EMAILS:
       var previous = state.previous;
       previous.pop();
       return {
-        emails: _.mapKeys(action.payload.messages, "id"),
+        emails: _.mapKeys(action.payload.data.messages, "id"),
         previous: previous,
-        nextpage: action.payload.nextpage,
-        label: action.label,
+        nextpage: action.payload.data.nextpage,
+        label: action.payload.label,
         loading: false
       };
     case CLEAR_EMAILS:

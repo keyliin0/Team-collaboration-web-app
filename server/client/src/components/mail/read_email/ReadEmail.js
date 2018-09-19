@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ReactHtmlParser from "react-html-parser";
+import Back from "./Back";
+import Reply from "./Reply";
 
 class ReadEmail extends Component {
   render() {
-    console.log(this.props.messages.emails);
-    console.log(this.props.match.params.id);
     return (
       <div className="ReadEmail">
         <div className="subject">
@@ -13,6 +13,10 @@ class ReadEmail extends Component {
         </div>
         <div className="info">
           <div className="from float-left">
+            <div className="navs">
+              <Back />
+              <Reply />
+            </div>
             <div className="name">
               {this.props.messages.emails[this.props.match.params.id].name}
             </div>

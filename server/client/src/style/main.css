@@ -85,12 +85,25 @@
       margin-bottom: 1%;
       margin-left: 10%;
       margin-right: 10%; }
+      .mails .ReadEmail .info .navs i {
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 25px;
+        opacity: 0.8;
+        cursor: pointer; }
+        .mails .ReadEmail .info .navs i:hover {
+          opacity: 1;
+          transition: 0.5s;
+          background-color: #f1f1f3;
+          border-radius: 10px;
+          padding-left: 5px;
+          padding-right: 5px; }
       .mails .ReadEmail .info .name {
         font-weight: bold; }
     .mails .ReadEmail .content {
       margin: auto;
       height: 60vh;
-      overflow-y: auto; }
+      overflow-y: scroll; }
   .mails .folders {
     font-size: 13px;
     height: 100%;
