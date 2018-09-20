@@ -15,7 +15,7 @@ class EmailList extends Component {
   RenderEmails() {
     return _.map(this.props.messages.emails, email => {
       return (
-        <li key={email.id}>
+        <li key={email.id} className={email.is_read ? "read" : ""}>
           <div className="info">
             <label className="custom-control custom-checkbox">
               <input
@@ -36,6 +36,14 @@ class EmailList extends Component {
     });
   }
   render() {
+    console.log(this.props.messages);
+    if (this.props.messages.empty) {
+      return (
+        <div className="EmailList">
+          <div className="empty_list">List is empty</div>
+        </div>
+      );
+    }
     if (!this.props.messages.emails) {
       return <div className="loader" />;
     }

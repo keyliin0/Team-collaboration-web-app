@@ -17,8 +17,7 @@ export const FetchEmails = (page, type, label) => async dispatch => {
 export const DeleteEmails = selected_emails => async dispatch => {
   dispatch({ type: types.CLEAR_EMAILS });
   dispatch({ type: types.LOADING_EMAILS });
-  console.log(selected_emails.folder);
-  if (selected_emails.folder !== "TRASH") {
+  if (selected_emails.folder !== "TRASH" && selected_emails.folder !== "SENT") {
     await axios.post("/api/mail/modify", {
       ids: selected_emails.emails,
       addlabels: ["TRASH"],

@@ -136,6 +136,12 @@
       height: 600px;
       overflow: auto;
       color: #4d4f5c; }
+      .mails .content .EmailList .empty_list {
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center; }
+      .mails .content .EmailList .read {
+        background: #f5f6fa; }
       .mails .content .EmailList ul li {
         overflow: auto;
         list-style: none;

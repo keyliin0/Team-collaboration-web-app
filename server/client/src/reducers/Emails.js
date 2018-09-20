@@ -16,10 +16,13 @@ export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_EMAILS:
       return {
-        emails: _.mapKeys(action.payload.data.messages, "id"),
+        emails: action.payload.data.messages
+          ? _.mapKeys(action.payload.data.messages, "id")
+          : null,
         previous: [...state.previous, action.payload.page],
         nextpage: action.payload.data.nextpage,
         label: action.payload.label,
+        empty: action.payload.data.messages === undefined,
         loading: false
       };
     case FETCH_PREVIOUS_EMAILS:

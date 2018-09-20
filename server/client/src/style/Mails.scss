@@ -83,6 +83,14 @@
       height: 600px;
       overflow: auto;
       color: #4d4f5c;
+      & .empty_list {
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+      }
+      & .read {
+        background: #f5f6fa;
+      }
       & ul li {
         &:hover {
           transform: translate(0, 2px);
