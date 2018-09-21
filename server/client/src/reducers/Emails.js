@@ -3,7 +3,8 @@ import {
   FETCH_EMAILS,
   FETCH_PREVIOUS_EMAILS,
   LOADING_EMAILS,
-  CLEAR_EMAILS
+  CLEAR_EMAILS,
+  MARK_READ_UNREAD
 } from "../actions/types";
 const INITIAL_STATE = {
   emails: null,
@@ -39,6 +40,12 @@ export default function(state = INITIAL_STATE, action) {
       return INITIAL_STATE;
     case LOADING_EMAILS:
       return { ...state, loading: true };
+    case MARK_READ_UNREAD:
+      var emails = state.emails;
+      action.payload.selected_emails.forEach(id => {
+        emails[id].is_read = action.payload.is_read;
+      });
+      return { ...state, emails };
     default:
       return state;
   }

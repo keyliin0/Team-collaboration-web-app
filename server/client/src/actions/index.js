@@ -35,3 +35,23 @@ export const Select_Email = (event, email_id) => dispatch => {
     dispatch({ type: types.SELECT_EMAIL, payload: email_id });
   else dispatch({ type: types.DESELECT_EMAIL, payload: email_id });
 };
+
+export const Mark_Read_Unread = (selected_emails, read) => async dispatch => {
+  if (read) {
+    await axios.post("/api/mail/modify", {
+      ids: selected_emails,
+      addlabels: [],
+      removelabels: ["UNREAD"]
+    });
+  } else {
+    await axios.post("/api/mail/modify", {
+      ids: selected_emails,
+      addlabels: ["UNREAD"],
+      removelabels: []
+    });
+  }
+  dispatch({
+    type: types.MARK_READ_UNREAD,
+    payload: { is_read: read, selected_emails: selected_emails }
+  });
+};

@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as actions from "../../../actions";
 import ReactHtmlParser from "react-html-parser";
 import Back from "./Back";
 import Reply from "./Reply";
 
 class ReadEmail extends Component {
+  componentWillMount() {
+    if (!this.props.messages.emails[this.props.match.params.id].is_read)
+      this.props.Mark_Read_Unread([this.props.match.params.id], true);
+  }
+  shouldComponentUpdate() {
+    return false;
+  }
   render() {
     return (
       <div className="ReadEmail">
@@ -43,4 +51,7 @@ function mapStateToProps({ emails }) {
   return { messages: emails };
 }
 
-export default connect(mapStateToProps)(ReadEmail);
+export default connect(
+  mapStateToProps,
+  actions
+)(ReadEmail);

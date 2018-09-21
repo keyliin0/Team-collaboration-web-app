@@ -5,6 +5,8 @@ import SearchEmails from "./SearchEmails";
 import NextEmails from "./NextEmails";
 import PreviousEmails from "./PreviousEmails";
 import DeleteEmail from "./DeleteEmail";
+import MarkAsRead from "./MarkAsRead";
+import MarkAsUnread from "./MarkAsUnread";
 
 class Toolbox extends Component {
   render() {
@@ -12,8 +14,8 @@ class Toolbox extends Component {
       <div className="Toolbox">
         <SearchEmails />
         <DeleteEmail />
-        <i className="far fa-envelope-open" title="Mark as unread" />
-        <i className="far fa-envelope" title="Mark as read" />
+        <MarkAsUnread />
+        <MarkAsRead />
         <PreviousEmails />
         <NextEmails />
         {this.props.messages.loading && this.props.messages.emails ? (

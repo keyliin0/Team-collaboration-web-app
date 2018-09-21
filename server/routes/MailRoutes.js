@@ -91,7 +91,7 @@ module.exports = app => {
                 };
                 emails.push(email);
               } catch (err) {
-                res.status(500).send("error");
+                //console.log(err);
               }
             });
             // console.log(response.parts[0].body.payload);
@@ -126,6 +126,7 @@ module.exports = app => {
   // modify a message
   app.post("/api/mail/modify", RequireLogin, CheckToken, async (req, res) => {
     try {
+      console.log(req.body);
       const request = await axios.post(
         mainURL +
           req.user.googleId +
@@ -138,6 +139,7 @@ module.exports = app => {
         }
       );
       res.send("emails deleted");
+      console.log(request);
     } catch (err) {
       res.status(500).send(err);
     }

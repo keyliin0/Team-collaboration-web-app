@@ -2,8 +2,9 @@ import _ from "lodash";
 import {
   SELECT_EMAIL,
   DESELECT_EMAIL,
+  FETCH_EMAILS,
   CLEAR_EMAILS,
-  FETCH_EMAILS
+  LOADING_EMAILS
 } from "../actions/types";
 const INITIAL_STATE = {
   emails: [],
@@ -11,7 +12,6 @@ const INITIAL_STATE = {
 };
 
 export default function(state = INITIAL_STATE, action) {
-  console.log(state);
   switch (action.type) {
     case SELECT_EMAIL:
       return { ...state, emails: [...state.emails, action.payload] };
@@ -23,6 +23,8 @@ export default function(state = INITIAL_STATE, action) {
     case FETCH_EMAILS:
       return { ...state, folder: action.payload.label };
     case CLEAR_EMAILS:
+      return INITIAL_STATE;
+    case LOADING_EMAILS:
       return INITIAL_STATE;
     default:
       return state;
