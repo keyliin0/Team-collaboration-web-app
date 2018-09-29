@@ -66,3 +66,37 @@
   opacity: 0.5;
   cursor: default !important;
 }
+
+// form custom
+
+%input_material_text {
+  & span {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    transform-origin: 0 0;
+    transition: all 0.2s ease;
+  }
+  & input {
+    border: none;
+    -webkit-appearance: none;
+    border-bottom: 2px solid #c8ccd4;
+    outline: none;
+    padding: 12px 0px;
+    transition: 0.2s;
+    width: 100%;
+    &:not(:placeholder-shown) {
+      & + span {
+        color: #9098a9;
+        transform: translateY(-26px);
+      }
+    }
+    &:focus {
+      border-bottom: 2px solid #0077ff;
+      & + span {
+        color: #0077ff;
+        transform: translateY(-26px);
+      }
+    }
+  }
+}

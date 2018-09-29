@@ -4,7 +4,8 @@ import Toolbox from "./toolbox/Toolbox";
 import EmailList from "./EmailList";
 import ReadEmail from "./read_email/ReadEmail";
 import { Switch, Router, Route } from "react-router-dom";
-import { EmailList_PATH, ReadEmail_PATH } from "./RoutesVars";
+import { EmailList_PATH, ReadEmail_PATH, SendEmail_PATH } from "./RoutesVars";
+import SendEmail from "./Send";
 
 const Mails = () => {
   return (
@@ -24,6 +25,7 @@ const Mails = () => {
             )}
           />
           <Route path={ReadEmail_PATH} component={ReadEmail} />
+          <Route path={SendEmail_PATH} component={SendEmail} />
         </Switch>
       </div>
       <div className="clear-fix" />

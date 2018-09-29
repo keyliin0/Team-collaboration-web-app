@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import { FETCH_EMAILS } from "../../actions/types";
 import { withRouter } from "react-router-dom";
-import { EmailList_PATH } from "./RoutesVars";
+import { EmailList_PATH, SendEmail_PATH } from "./RoutesVars";
 
 class Folders extends Component {
   handleClick(label) {
@@ -19,7 +19,12 @@ class Folders extends Component {
     return (
       <ul>
         <li className="compose">
-          <button className="btn btn-primary">Compose</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => this.props.history.push(SendEmail_PATH)}
+          >
+            Compose
+          </button>
         </li>
         <li>
           <span onClick={() => this.handleClick("INBOX")}>Inbox</span>

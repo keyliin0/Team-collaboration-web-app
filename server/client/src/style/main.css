@@ -75,6 +75,40 @@
   margin-top: 5%;
   box-shadow: 0px 0.2px;
   font-family: "Source Sans Pro", sans-serif; }
+  .mails .SendEmail {
+    width: 100%;
+    text-align: center;
+    overflow-y: auto;
+    height: 80vh; }
+    .mails .SendEmail .content {
+      margin-top: 10px;
+      display: inline-block; }
+      .mails .SendEmail .content .to {
+        width: 100%;
+        max-width: 275px;
+        text-align: left;
+        position: relative;
+        color: #9098a9;
+        margin-bottom: 10px; }
+      .mails .SendEmail .content .subject {
+        width: 100%;
+        max-width: 500px;
+        text-align: left;
+        position: relative;
+        color: #9098a9;
+        margin-bottom: 10px; }
+      .mails .SendEmail .content .toolbar-class {
+        margin: 0;
+        padding: 0; }
+      .mails .SendEmail .content .editor-class {
+        border: #f1f1f1 solid 1px;
+        overflow-y: auto;
+        height: 260px;
+        line-height: 10px; }
+      .mails .SendEmail .content .send-btn {
+        margin-top: 10px; }
+        .mails .SendEmail .content .send-btn button {
+          cursor: pointer; }
   .mails .ReadEmail {
     text-align: center; }
     .mails .ReadEmail .subject {
@@ -115,6 +149,8 @@
         border: 1px solid #f1f1f3;
         padding: 20%;
         text-align: center; }
+        .mails .folders ul .compose button {
+          cursor: pointer; }
       .mails .folders ul li {
         margin-bottom: 10%; }
         .mails .folders ul li span {
@@ -157,7 +193,7 @@
           background-color: #56c0e0;
           width: 3px;
           margin-right: 5%;
-          height: 100%;*/
+          height: 100%; */
             content: " ";
             background-color: #56c0e0;
             display: inline-block; }
@@ -232,6 +268,30 @@
 .disabled-icon {
   opacity: 0.5;
   cursor: default !important; }
+
+.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  transform-origin: 0 0;
+  transition: all 0.2s ease; }
+
+.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input {
+  border: none;
+  -webkit-appearance: none;
+  border-bottom: 2px solid #c8ccd4;
+  outline: none;
+  padding: 12px 0px;
+  transition: 0.2s;
+  width: 100%; }
+  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span {
+    color: #9098a9;
+    transform: translateY(-26px); }
+  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus {
+    border-bottom: 2px solid #0077ff; }
+    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span {
+      color: #0077ff;
+      transform: translateY(-26px); }
 
 * {
   margin: 0;
