@@ -144,4 +144,33 @@ module.exports = app => {
       res.status(500).send(err);
     }
   });
+  // send a message
+  app.post("/api/mail/send", RequireLogin, CheckToken, async (req, res) => {
+    const { content, receiver } = req.body;
+    const to = "To: " + receiver;
+    const from = "From: me";
+    const subject = "Subject: " + req.body.subject;
+    const contentType = "Content-Type: text/plain; charset=utf-8";
+    const mime = "MIME-Version: 1.0";
+    var message = "";
+    message += to + "\r\n";
+    message += from + "\r\n";
+    message += subject + "\r\n";
+    message += contentType + "\r\n";
+    message += mime + "\r\n";
+    message += "\r\n" + content;
+    message = base64url.encode(message);
+    try {
+      await axios.post(
+        "https://www.googleapis.com/gmail/v1/users/" +
+          req.user.googleId +
+          "/messages/send?access_token=" +
+          req.user.accesskey,
+        { raw: message }
+      );
+      res.send("success");
+    } catch (err) {
+      res.send(err);
+    }
+  });
 };

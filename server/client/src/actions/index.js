@@ -55,3 +55,15 @@ export const Mark_Read_Unread = (selected_emails, read) => async dispatch => {
     payload: { is_read: read, selected_emails: selected_emails }
   });
 };
+
+export const Send_Email = (receiver, subject, content) => async dispatch => {
+  const request = await axios.post("/api/mail/send", {
+    receiver: receiver,
+    subject: subject,
+    content: content
+  });
+  dispatch({
+    type: "SEND_EMAIL",
+    payload: request.data
+  });
+};

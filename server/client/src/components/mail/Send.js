@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 
 class Send extends Component {
+  constructor(props) {
+    super(props);
+  }
+  handleClick() {
+    this.props.Send_Email("test@gmail.com", "test test", "content test");
+  }
   render() {
     return (
       <div className="SendEmail">
@@ -21,8 +29,11 @@ class Send extends Component {
             toolbarClassName="toolbar-class"
           />
           <div className="send-btn">
-            <button className="btn btn-primary">
-              Send <i class="far fa-paper-plane" />
+            <button
+              onClick={() => this.handleClick()}
+              className="btn btn-primary"
+            >
+              Send <i className="far fa-paper-plane" />
             </button>
           </div>
         </div>
@@ -31,4 +42,7 @@ class Send extends Component {
   }
 }
 
-export default Send;
+export default connect(
+  null,
+  actions
+)(Send);
