@@ -2,8 +2,8 @@ const RequireLogin = require("../middlewares/RequireLogin");
 const CheckToken = require("../middlewares/CheckToken");
 const axios = require("axios");
 var batchelor = require("batchelor");
-const mainURL = "https://www.googleapis.com/gmail/v1/users/";
 const base64url = require("base64url");
+const mainURL = "https://www.googleapis.com/gmail/v1/users/";
 
 module.exports = app => {
   // get messages
@@ -150,7 +150,7 @@ module.exports = app => {
     const to = "To: " + receiver;
     const from = "From: me";
     const subject = "Subject: " + req.body.subject;
-    const contentType = "Content-Type: text/plain; charset=utf-8";
+    const contentType = "Content-Type: text/html; charset=utf-8";
     const mime = "MIME-Version: 1.0";
     var message = "";
     message += to + "\r\n";

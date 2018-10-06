@@ -109,6 +109,8 @@
         margin-top: 10px; }
         .mails .SendEmail .content .send-btn button {
           cursor: pointer; }
+          .mails .SendEmail .content .send-btn button:disabled {
+            cursor: default; }
   .mails .ReadEmail {
     text-align: center; }
     .mails .ReadEmail .subject {
@@ -270,6 +272,7 @@
   cursor: default !important; }
 
 .mails .SendEmail .content .to span, .mails .SendEmail .content .subject span {
+  pointer-events: none;
   position: absolute;
   top: 16px;
   left: 0;

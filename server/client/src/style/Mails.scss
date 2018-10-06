@@ -45,6 +45,9 @@
         margin-top: 10px;
         & button {
           cursor: pointer;
+          &:disabled {
+            cursor: default;
+          }
         }
       }
     }

@@ -71,6 +71,7 @@
 
 %input_material_text {
   & span {
+    pointer-events: none;
     position: absolute;
     top: 16px;
     left: 0;

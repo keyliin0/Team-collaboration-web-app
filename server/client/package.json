@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "draft-js": "^0.10.5",
+    "draftjs-to-html": "^0.8.4",
     "lodash": "^4.17.11",
     "materialize": "^1.0.0",
     "materialize-css": "^0.100.2",
