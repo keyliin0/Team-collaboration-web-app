@@ -23,6 +23,7 @@ export default function(state = INITIAL_STATE, action) {
         previous: [...state.previous, action.payload.page],
         nextpage: action.payload.data.nextpage,
         label: action.payload.label,
+        query: action.payload.query,
         empty: action.payload.data.messages === undefined,
         loading: false
       };
@@ -34,6 +35,7 @@ export default function(state = INITIAL_STATE, action) {
         previous: previous,
         nextpage: action.payload.data.nextpage,
         label: action.payload.label,
+        query: action.payload.query,
         loading: false
       };
     case CLEAR_EMAILS:

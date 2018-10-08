@@ -8,7 +8,7 @@ const mainURL = "https://www.googleapis.com/gmail/v1/users/";
 module.exports = app => {
   // get messages
   app.get(
-    "/api/mail/messages/:label/:nextpage",
+    "/api/mail/messages/:label/:nextpage/:q*?",
     RequireLogin,
     CheckToken,
     async (req, res) => {
@@ -24,7 +24,8 @@ module.exports = app => {
           req.params.label +
           (req.params.nextpage !== "default"
             ? "&pageToken=" + req.params.nextpage
-            : "");
+            : "") +
+          (req.params.q ? "&q=" + req.params.q : "");
         const request = await axios.get(URL + token);
         if (request.data.resultSizeEstimate === 0) {
           res.send(request.data);

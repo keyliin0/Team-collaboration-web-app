@@ -12,7 +12,8 @@ class PreviousEmails extends Component {
     this.props.FetchEmails(
       this.props.messages.previous[this.props.messages.previous.length - 2],
       FETCH_PREVIOUS_EMAILS,
-      this.props.messages.label
+      this.props.messages.label,
+      this.props.messages.query
     );
   }
   render() {

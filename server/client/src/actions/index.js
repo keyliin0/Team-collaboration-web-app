@@ -5,12 +5,19 @@ export const ClearEmails = () => dispatch => {
   dispatch({ type: types.CLEAR_EMAILS });
 };
 
-export const FetchEmails = (page, type, label) => async dispatch => {
+export const FetchEmails = (
+  page,
+  type,
+  label,
+  query = ""
+) => async dispatch => {
   dispatch({ type: types.LOADING_EMAILS });
-  const request = await axios.get("/api/mail/messages/" + label + "/" + page);
+  const request = await axios.get(
+    "/api/mail/messages/" + label + "/" + page + "/" + query
+  );
   dispatch({
     type: type,
-    payload: { data: request.data, page: page, label: label }
+    payload: { data: request.data, page: page, label: label, query: query }
   });
 };
 

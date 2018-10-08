@@ -12,7 +12,8 @@ class NextEmails extends Component {
     this.props.FetchEmails(
       this.props.messages.nextpage,
       FETCH_EMAILS,
-      this.props.messages.label
+      this.props.messages.label,
+      this.props.messages.query
     );
   }
   render() {
