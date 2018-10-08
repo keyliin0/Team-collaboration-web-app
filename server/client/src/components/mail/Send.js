@@ -10,7 +10,17 @@ import { EmailList_PATH } from "./RoutesVars";
 class Send extends Component {
   constructor(props) {
     super(props);
-    this.state = { content: "", to: "", subject: "" };
+    if (
+      this.props.match.params.id &&
+      this.props.messages.emails &&
+      this.props.messages.emails[this.props.match.params.id]
+    )
+      this.state = {
+        content: "",
+        to: this.props.messages.emails[this.props.match.params.id].from,
+        subject: this.props.messages.emails[this.props.match.params.id].subject
+      };
+    else this.state = { content: "", to: "", subject: "" };
   }
   handleClick() {
     this.props.Send_Email(
@@ -85,7 +95,11 @@ class Send extends Component {
   }
 }
 
+function mapStateToProps({ emails }) {
+  return { messages: emails };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(Send);

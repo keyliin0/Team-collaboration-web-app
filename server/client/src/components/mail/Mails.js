@@ -25,6 +25,7 @@ const Mails = () => {
             )}
           />
           <Route path={ReadEmail_PATH} component={ReadEmail} />
+          <Route path={SendEmail_PATH + "/:id"} component={SendEmail} />
           <Route path={SendEmail_PATH} component={SendEmail} />
         </Switch>
       </div>
