@@ -164,6 +164,15 @@
     .mails .content .Toolbox {
       width: 100%;
       border: 1px solid #f1f1f3; }
+      .mails .content .Toolbox .Search_input {
+        border: #ccc 1px solid;
+        padding: 7px;
+        border-radius: 4px;
+        width: 250px;
+        outline: none; }
+      .mails .content .Toolbox button {
+        border: none;
+        background: none; }
       .mails .content .Toolbox i {
         margin: 10px;
         font-size: 20px; }

@@ -25,7 +25,12 @@ class SearchEmails extends Component {
     return (
       <div className="form-group">
         <form onSubmit={event => this.handleSubmit(event)}>
+          <button type="submit">
+            <i className="fa fa-search" />
+          </button>
           <input
+            className="Search_input"
+            placeholder="Search Message or Name…"
             type="text"
             onChange={event => this.handleChange(event)}
             value={this.state.value}
