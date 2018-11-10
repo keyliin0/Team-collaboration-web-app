@@ -74,3 +74,5 @@ export const Send_Email = (receiver, subject, content) => async dispatch => {
     payload: request.data
   });
 };
+
+// ________________________________________________________________________________________________

@@ -14,6 +14,9 @@ class EmailList extends Component {
   }
   RenderEmails() {
     return _.map(this.props.messages.emails, email => {
+      const checked = _.findIndex(this.props.selected_emails.emails, id => {
+        return email.id == id;
+      });
       return (
         <li key={email.id} className={email.is_read ? "read" : ""}>
           <div className="info">
@@ -22,6 +25,8 @@ class EmailList extends Component {
                 type="checkbox"
                 className="custom-control-input"
                 onClick={event => this.props.Select_Email(event, email.id)}
+                readOnly
+                checked={checked === -1 ? false : true}
               />
               <span className="custom-control-indicator" />
             </label>
@@ -55,8 +60,8 @@ class EmailList extends Component {
   }
 }
 
-function mapStateToProps({ emails }) {
-  return { messages: emails };
+function mapStateToProps(state) {
+  return { messages: state.emails, selected_emails: state.selected_emails };
 }
 
 export default withRouter(
