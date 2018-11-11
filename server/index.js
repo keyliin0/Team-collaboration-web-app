@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 
 // models
 require("./models/users");
-
+require("./models/groups");
 //db
 mongoose.connect(keys.mongodbURI);
 
@@ -29,8 +29,13 @@ app.use(passport.session());
 require("./services/passport");
 
 // routes
+
+/* ___ Mail Routes _____ */
 require("./routes/AuthRoutes")(app);
 require("./routes/MailRoutes")(app);
+
+/* ____ Group routes _____ */
+require("./routes/GroupRoutes")(app);
 
 // config
 if (process.env.NODE_ENV === "production") {

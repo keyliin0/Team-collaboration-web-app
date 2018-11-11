@@ -8,7 +8,8 @@ const UserSchema = new Schema({
   refreshkey: String,
   accesskey: String,
   LastRefreshed: Number,
-  imgURL: String
+  imgURL: String,
+  _groups: [{ type: Schema.Types.ObjectId, ref: "groups" }]
 });
 
 mongoose.model("users", UserSchema);

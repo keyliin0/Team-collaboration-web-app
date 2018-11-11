@@ -305,6 +305,12 @@
       color: #0077ff;
       transform: translateY(-26px); }
 
+.groups {
+  background-color: white;
+  margin: auto;
+  margin-top: 5%;
+  overflow-y: scroll; }
+
 * {
   margin: 0;
   padding: 0;
