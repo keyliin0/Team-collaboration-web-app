@@ -1,12 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
 import { Switch, Router, Route } from "react-router-dom";
+import MyGroups from "./MyGroups";
 
-const Groups = () => {
-  return (
-    <div className="groups col col-11 h-75">
-      <div className="content">sds</div>
-    </div>
-  );
-};
+class Groups extends Component {
+  render() {
+    return (
+      <div className="groups col col-11 h-75">
+        <MyGroups />
+      </div>
+    );
+  }
+}
 
 export default Groups;

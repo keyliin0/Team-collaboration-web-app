@@ -10,6 +10,7 @@ module.exports = app => {
     await Group.findById({ $in: req.user._groups }, (err, group) => {
       groups.push(group);
     });
+    console.log(groups);
     res.send(groups);
   });
   // creating a group

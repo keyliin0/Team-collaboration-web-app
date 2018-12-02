@@ -7,3 +7,5 @@ export const SELECT_EMAIL = "SELECT_EMAIL";
 export const DESELECT_EMAIL = "DESELECT_EMAIL";
 export const CLEAR_SELECTED_EMAILS = "CLEAR_SELECTED_EMAILS";
 export const MARK_READ_UNREAD = "MARK_READ_UNREAD";
+// group action types
+export const FETCH_GROUPS = "FETCH_GROUPS";

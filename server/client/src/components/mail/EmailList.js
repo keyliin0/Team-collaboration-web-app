@@ -15,7 +15,7 @@ class EmailList extends Component {
   RenderEmails() {
     return _.map(this.props.messages.emails, email => {
       const checked = _.findIndex(this.props.selected_emails.emails, id => {
-        return email.id == id;
+        return email.id === id;
       });
       return (
         <li key={email.id} className={email.is_read ? "read" : ""}>

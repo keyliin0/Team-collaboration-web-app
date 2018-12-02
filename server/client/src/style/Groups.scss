@@ -1,6 +1,47 @@
 .groups {
-  background-color: white;
+  //background-color: white;
   margin: auto;
   margin-top: 5%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  & .info {
+    color: #a4afb7;
+    width: 50%;
+    display: inline-block;
+    font-size: 18px;
+    & i {
+      margin: 15px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+    & table {
+      width: 80%;
+      background-color: white;
+      -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+      -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+      box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+      & .top {
+        border-bottom: 1px solid #f1f1f3;
+        height: 100px;
+      }
+      & .desc {
+        font-weight: bold;
+        color: #4d4f5c;
+      }
+      & .tools {
+        vertical-align: top;
+        text-align: right;
+      }
+      & .picture {
+        & img {
+          width: 60px;
+          height: 60px;
+          border-radius: 100%;
+          margin: 20px;
+        }
+      }
+      margin: auto;
+    }
+  }
 }

@@ -76,3 +76,11 @@ export const Send_Email = (receiver, subject, content) => async dispatch => {
 };
 
 // ________________________________________________________________________________________________
+
+export const FetchGroups = () => async dispatch => {
+  const request = await axios.get("/api/group/my_groups");
+  dispatch({
+    type: types.FETCH_GROUPS,
+    payload: request.data
+  });
+};

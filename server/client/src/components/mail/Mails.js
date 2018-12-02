@@ -3,7 +3,7 @@ import Folders from "./Folders";
 import Toolbox from "./toolbox/Toolbox";
 import EmailList from "./EmailList";
 import ReadEmail from "./read_email/ReadEmail";
-import { Switch, Router, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { EmailList_PATH, ReadEmail_PATH, SendEmail_PATH } from "./RoutesVars";
 import SendEmail from "./Send";
 
