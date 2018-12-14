@@ -281,7 +281,7 @@
   opacity: 0.5;
   cursor: default !important; }
 
-.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span {
+.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span, .groups .modify .input_field span {
   pointer-events: none;
   position: absolute;
   top: 16px;
@@ -289,7 +289,7 @@
   transform-origin: 0 0;
   transition: all 0.2s ease; }
 
-.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input {
+.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input, .groups .modify .input_field input {
   border: none;
   -webkit-appearance: none;
   border-bottom: 2px solid #c8ccd4;
@@ -297,25 +297,30 @@
   padding: 12px 0px;
   transition: 0.2s;
   width: 100%; }
-  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span {
+  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span, .groups .modify .input_field input:not(:placeholder-shown) + span {
     color: #9098a9;
     transform: translateY(-26px); }
-  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus {
+  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus, .groups .modify .input_field input:focus {
     border-bottom: 2px solid #0077ff; }
-    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span {
+    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span, .groups .modify .input_field input:focus + span {
       color: #0077ff;
       transform: translateY(-26px); }
 
 .groups {
   margin: auto;
-  margin-top: 5%;
-  overflow-y: auto; }
+  margin-top: 5%; }
+  .groups .empty_list {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center; }
   .groups .info {
+    animation: show 2s;
     color: #a4afb7;
     width: 50%;
     display: inline-block;
     font-size: 18px; }
     .groups .info i {
+      text-decoration-color: none;
       margin: 15px;
       cursor: pointer; }
       .groups .info i:hover {
@@ -341,6 +346,24 @@
         height: 60px;
         border-radius: 100%;
         margin: 20px; }
+  .groups .modify {
+    background-color: white;
+    text-align: center; }
+    .groups .modify .input_field {
+      margin-left: auto;
+      margin-right: auto;
+      width: 300px;
+      text-align: left;
+      position: relative;
+      margin-bottom: 3%;
+      margin-top: 3%;
+      color: #9098a9; }
+
+@keyframes show {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 
 * {
   margin: 0;

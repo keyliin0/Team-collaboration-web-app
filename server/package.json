@@ -29,7 +29,7 @@
     "gapi": "0.0.3",
     "google-batch": "0.0.8",
     "googleapis": "^33.0.0",
-    "mongoose": "^5.2.13",
+    "mongoose": "^4.13.17",
     "nodemon": "^1.18.4",
     "passport": "^0.4.0",
     "passport-google": "^0.3.0",

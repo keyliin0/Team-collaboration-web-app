@@ -1,14 +1,20 @@
 .groups {
   //background-color: white;
+  & .empty_list {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+  }
   margin: auto;
   margin-top: 5%;
-  overflow-y: auto;
   & .info {
+    animation: show 2s;
     color: #a4afb7;
     width: 50%;
     display: inline-block;
     font-size: 18px;
     & i {
+      text-decoration-color: none;
       margin: 15px;
       cursor: pointer;
       &:hover {
@@ -43,5 +49,29 @@
       }
       margin: auto;
     }
+  }
+  & .modify {
+    background-color: white;
+    text-align: center;
+    & .input_field {
+      margin-left: auto;
+      margin-right: auto;
+      width: 300px;
+      text-align: left;
+      position: relative;
+      margin-bottom: 3%;
+      margin-top: 3%;
+      color: #9098a9;
+      @extend %input_material_text;
+    }
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const GroupInfo = ({ name }) => {
+const GroupInfo = ({ name, facebook, instagram, twitter, email, img }) => {
   return (
     <div className="info">
       <table>
@@ -21,11 +22,24 @@ const GroupInfo = ({ name }) => {
           </tr>
           <tr>
             <td />
-            <td colSpan={3}>
-              <i className="fab fa-instagram" />
-              <i className="fab fa-twitter" />
-              <i className="fab fa-facebook-f" />
-              <i className="far fa-envelope" />
+            <td colSpan={2}>
+              <Link
+                style={{ textDecoration: "none" }}
+                to={"https://www.instagram.com/" + instagram}
+                target="_blank"
+              >
+                <i className="fab fa-instagram" />
+              </Link>
+              <a href={"https://www.twitter.com/" + twitter} target="_blank">
+                <i className="fab fa-twitter" />
+              </a>
+              <a href={"https://www.facebook.com/" + facebook} target="_blank">
+                <i className="fab fa-facebook-f" />
+              </a>
+              <a href={email} target="_blank">
+                {" "}
+                <i className="far fa-envelope" />
+              </a>
             </td>
           </tr>
         </tbody>
