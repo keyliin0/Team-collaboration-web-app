@@ -1,35 +1,47 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Remove from "./remove";
 
-const GroupInfo = ({ name, facebook, instagram, twitter, email, img }) => {
+const GroupInfo = ({
+  id,
+  owner,
+  name,
+  facebook,
+  instagram,
+  twitter,
+  email,
+  img
+}) => {
   return (
     <div className="info">
       <table>
         <tbody>
           <tr className="top">
             <td className="picture">
-              <img
-                src="https://www.w3schools.com/bootstrap4/newyork.jpg"
-                alt={name}
-              />
+              <img src={img} alt={name} />
             </td>
             <td className="desc">{name}</td>
             <td className="tools">
-              <i className="fas fa-pen" />
+              {owner ? (
+                <Link to={"/groups/modify/" + id}>
+                  <i className="fas fa-pen" />
+                </Link>
+              ) : (
+                <div />
+              )}
               <i className="fas fa-plus" />
-              <i className="fas fa-times" />
+              <Remove id={id} />
             </td>
           </tr>
           <tr>
             <td />
             <td colSpan={2}>
-              <Link
-                style={{ textDecoration: "none" }}
-                to={"https://www.instagram.com/" + instagram}
+              <a
+                href={"https://www.instagram.com/" + instagram}
                 target="_blank"
               >
                 <i className="fab fa-instagram" />
-              </Link>
+              </a>
               <a href={"https://www.twitter.com/" + twitter} target="_blank">
                 <i className="fab fa-twitter" />
               </a>

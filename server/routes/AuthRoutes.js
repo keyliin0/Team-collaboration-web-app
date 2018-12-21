@@ -24,11 +24,14 @@ module.exports = app => {
     }
   );
   app.get("/api/current_user", (req, res) => {
-    user = req.user;
-    res.send({
-      firstname: user.firstname,
-      lastname: user.lastname,
-      imgURL: user.imgURL
-    });
+    if (req.user) {
+      user = req.user;
+      res.send({
+        id: user._id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        imgURL: user.imgURL
+      });
+    } else res.send(null);
   });
 };

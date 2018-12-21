@@ -13,6 +13,10 @@
     width: 50%;
     display: inline-block;
     font-size: 18px;
+    & a {
+      text-decoration: none;
+      color: inherit;
+    }
     & i {
       text-decoration-color: none;
       margin: 15px;
@@ -73,5 +77,23 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+.remove-modal {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4d4f5c;
+  padding: 15px;
+  & .buttons {
+    margin-top: 10px;
+    text-align: right;
+    & button {
+      cursor: pointer;
+    }
+    & .Yes {
+      margin-right: 18px;
+      width: 100px;
+    }
   }
 }

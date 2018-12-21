@@ -20,7 +20,7 @@ const GroupSchema = new Schema({
   facebook: { type: String, default: "" },
   email: { type: String, default: "" },
   _creator: { type: Schema.Types.ObjectId, ref: "users" },
-  _users: [UserSchema]
+  _users: [{ type: Schema.Types.ObjectId, ref: "users" }]
 });
 
 mongoose.model("groups", GroupSchema);

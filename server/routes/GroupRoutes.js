@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const RequireLogin = require("../middlewares/RequireLogin");
 const Group = mongoose.model("groups");
 const User = mongoose.model("users");
+const _ = require("lodash");
 
 module.exports = app => {
   // fetching own groups
@@ -10,7 +11,6 @@ module.exports = app => {
     await Group.find({ _id: { $in: req.user._groups } }, (err, group) => {
       if (group) groups = [...groups, ...group];
     });
-    console.log(groups);
     res.send(groups);
   });
   // creating a group
@@ -20,7 +20,7 @@ module.exports = app => {
       imgURL: req.body.imgurl,
       instagram: req.body.instagram,
       twitter: req.body.twitter,
-      facebook: req.body.twitter,
+      facebook: req.body.facebook,
       email: req.body.email,
       _creator: [req.user.id],
       _users: [req.user]
@@ -36,16 +36,28 @@ module.exports = app => {
       imgURL: req.body.imgurl,
       instagram: req.body.instagram,
       twitter: req.body.twitter,
-      facebook: req.body.twitter,
-      email: req.body.email,
-      _creator: [req.user.id],
-      _users: [req.user]
+      facebook: req.body.facebook,
+      email: req.body.email
     });
-    res.send("group updated");
+    res.send(null);
+  });
+  // remove user from a group
+  app.post("/api/group/remove", RequireLogin, async (req, res) => {
+    await Group.findByIdAndUpdate(mongoose.Types.ObjectId(req.body.group_id), {
+      $pull: {
+        _users: mongoose.Types.ObjectId(req.body.user_id)
+      }
+    });
+    await User.findByIdAndUpdate(mongoose.Types.ObjectId(req.body.user_id), {
+      $pull: {
+        _groups: mongoose.Types.ObjectId(req.body.group_id)
+      }
+    });
+    res.send(null);
   });
   // deleting a group
   app.post("/api/group/delete", RequireLogin, async (req, res) => {
-    await Group.findById(
+    await Group.findByIdAndRemove(
       mongoose.Types.ObjectId(req.body.group_id),
       async (err, group) => {
         const users_id = [];
@@ -63,13 +75,17 @@ module.exports = app => {
         );
       }
     );
-    await Group.findByIdAndDelete(mongoose.Types.ObjectId(req.body.group_id));
     res.send("group deleted");
   });
   app.post("/api/group/add", RequireLogin, async (req, res) => {
     await Group.findOneAndUpdate(req.body.group_id, {
       $push: {
-        _users: req.user
+        _users: req.body.user_id
+      }
+    });
+    await User.findOneAndUpdate(req.body.user_id, {
+      $push: {
+        _groups: req.body.group_id
       }
     });
   });

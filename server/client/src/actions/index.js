@@ -1,5 +1,13 @@
 import axios from "axios";
 import * as types from "./types";
+
+// user actions
+
+export const FetchUser = () => async dispatch => {
+  const request = await axios.get("/api/current_user");
+  dispatch({ type: types.FETCH_USER, payload: request.data });
+};
+
 // email actions
 export const ClearEmails = () => dispatch => {
   dispatch({ type: types.CLEAR_EMAILS });
@@ -82,5 +90,51 @@ export const FetchGroups = () => async dispatch => {
   dispatch({
     type: types.FETCH_GROUPS,
     payload: request.data
+  });
+};
+
+export const ModifyGroup = (
+  id,
+  name,
+  imgurl,
+  instagram,
+  twitter,
+  facebook,
+  email
+) => async dispatch => {
+  const request = await axios.post("/api/group/modify", {
+    group_id: id,
+    name: name,
+    imgurl: imgurl,
+    instagram: instagram,
+    twitter: twitter,
+    facebook: facebook,
+    email: email
+  });
+};
+
+export const DeleteGroup = id => async dispatch => {
+  const request = await axios.post("/api/group/delete", { group_id: id });
+  dispatch({
+    type: types.DELETE_GROUP,
+    payload: id
+  });
+};
+
+export const CreateGroup = (
+  name,
+  imgurl,
+  instagram,
+  twitter,
+  facebook,
+  email
+) => async dispatch => {
+  const request = await axios.post("/api/group/create", {
+    name: name,
+    imgurl: imgurl,
+    instagram: instagram,
+    twitter: twitter,
+    facebook: facebook,
+    email: email
   });
 };

@@ -319,6 +319,9 @@
     width: 50%;
     display: inline-block;
     font-size: 18px; }
+    .groups .info a {
+      text-decoration: none;
+      color: inherit; }
     .groups .info i {
       text-decoration-color: none;
       margin: 15px;
@@ -364,6 +367,20 @@
     opacity: 0; }
   100% {
     opacity: 1; } }
+
+.remove-modal {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4d4f5c;
+  padding: 15px; }
+  .remove-modal .buttons {
+    margin-top: 10px;
+    text-align: right; }
+    .remove-modal .buttons button {
+      cursor: pointer; }
+    .remove-modal .buttons .Yes {
+      margin-right: 18px;
+      width: 100px; }
 
 * {
   margin: 0;

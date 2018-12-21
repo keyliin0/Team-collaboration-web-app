@@ -9,3 +9,6 @@ export const CLEAR_SELECTED_EMAILS = "CLEAR_SELECTED_EMAILS";
 export const MARK_READ_UNREAD = "MARK_READ_UNREAD";
 // group action types
 export const FETCH_GROUPS = "FETCH_GROUPS";
+export const DELETE_GROUP = "DELETE_GROUP";
+// user action types
+export const FETCH_USER = "FETCH_USER";

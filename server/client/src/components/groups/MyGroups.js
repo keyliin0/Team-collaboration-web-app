@@ -9,10 +9,13 @@ const default_img =
 
 class MyGroups extends Component {
   getgroups() {
-    console.log(this.props.groups);
+    const { user } = this.props;
     return _.map(this.props.groups, group => {
       return (
         <GroupInfo
+          key={group._id}
+          id={group._id}
+          owner={user.id === group._creator}
           name={group.name}
           img={group.imgURL === "" ? default_img : group.imgURL}
           instagram={group.instagram}
@@ -23,7 +26,7 @@ class MyGroups extends Component {
       );
     });
   }
-  componentWillMount() {
+  componentDidMount() {
     this.props.FetchGroups();
   }
   render() {
@@ -34,8 +37,8 @@ class MyGroups extends Component {
   }
 }
 
-function mapStateToProps({ groups }) {
-  return { groups };
+function mapStateToProps({ groups, user }) {
+  return { groups, user };
 }
 
 export default connect(
