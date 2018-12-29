@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Remove from "./remove";
+import Invite from "./Invite";
 
 const GroupInfo = ({
   id,
@@ -23,14 +24,17 @@ const GroupInfo = ({
             <td className="desc">{name}</td>
             <td className="tools">
               {owner ? (
-                <Link to={"/groups/modify/" + id}>
-                  <i className="fas fa-pen" />
-                </Link>
+                <div>
+                  <Link to={"/groups/modify/" + id}>
+                    <i className="fas fa-pen" />
+                  </Link>
+                  <Invite id={id} />
+                </div>
               ) : (
                 <div />
               )}
-              <i className="fas fa-plus" />
-              <Remove id={id} />
+
+              <Remove id={id} owner={owner} />
             </td>
           </tr>
           <tr>

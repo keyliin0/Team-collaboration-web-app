@@ -102,7 +102,7 @@ export const ModifyGroup = (
   facebook,
   email
 ) => async dispatch => {
-  const request = await axios.post("/api/group/modify", {
+  await axios.post("/api/group/modify", {
     group_id: id,
     name: name,
     imgurl: imgurl,
@@ -114,10 +114,21 @@ export const ModifyGroup = (
 };
 
 export const DeleteGroup = id => async dispatch => {
-  const request = await axios.post("/api/group/delete", { group_id: id });
+  await axios.post("/api/group/delete", { group_id: id });
   dispatch({
     type: types.DELETE_GROUP,
     payload: id
+  });
+};
+
+export const LeaveGroup = (group_id, user_id) => async dispatch => {
+  await axios.post("/api/group/remove", {
+    group_id: group_id,
+    user_id: user_id
+  });
+  dispatch({
+    type: types.DELETE_GROUP,
+    payload: group_id
   });
 };
 
@@ -129,7 +140,7 @@ export const CreateGroup = (
   facebook,
   email
 ) => async dispatch => {
-  const request = await axios.post("/api/group/create", {
+  await axios.post("/api/group/create", {
     name: name,
     imgurl: imgurl,
     instagram: instagram,

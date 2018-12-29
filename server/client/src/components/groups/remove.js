@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-responsive-modal";
-import { DeleteGroup, FetchGroups } from "../../actions";
+import { DeleteGroup, FetchGroups, LeaveGroup } from "../../actions";
 
 class Remove extends Component {
   constructor(props) {
@@ -15,7 +15,8 @@ class Remove extends Component {
     this.setState({ open: false });
   };
   onRemove() {
-    this.props.DeleteGroup(this.props.id);
+    if (this.props.owner) this.props.DeleteGroup(this.props.id);
+    else this.props.LeaveGroup(this.props.id, this.props.user.id);
   }
   render() {
     const { open } = this.state;
@@ -53,7 +54,11 @@ class Remove extends Component {
   }
 }
 
+function mapStateToProps({ user }) {
+  return { user };
+}
+
 export default connect(
-  null,
-  { DeleteGroup, FetchGroups }
+  mapStateToProps,
+  { DeleteGroup, FetchGroups, LeaveGroup }
 )(Remove);

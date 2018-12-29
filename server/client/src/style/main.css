@@ -281,7 +281,7 @@
   opacity: 0.5;
   cursor: default !important; }
 
-.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span, .groups .modify .input_field span {
+.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span, .groups .modify .input_field span, .join-modal .input_field span {
   pointer-events: none;
   position: absolute;
   top: 16px;
@@ -289,7 +289,7 @@
   transform-origin: 0 0;
   transition: all 0.2s ease; }
 
-.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input, .groups .modify .input_field input {
+.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input, .groups .modify .input_field input, .join-modal .input_field input {
   border: none;
   -webkit-appearance: none;
   border-bottom: 2px solid #c8ccd4;
@@ -297,12 +297,12 @@
   padding: 12px 0px;
   transition: 0.2s;
   width: 100%; }
-  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span, .groups .modify .input_field input:not(:placeholder-shown) + span {
+  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span, .groups .modify .input_field input:not(:placeholder-shown) + span, .join-modal .input_field input:not(:placeholder-shown) + span {
     color: #9098a9;
     transform: translateY(-26px); }
-  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus, .groups .modify .input_field input:focus {
+  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus, .groups .modify .input_field input:focus, .join-modal .input_field input:focus {
     border-bottom: 2px solid #0077ff; }
-    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span, .groups .modify .input_field input:focus + span {
+    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span, .groups .modify .input_field input:focus + span, .join-modal .input_field input:focus + span {
       color: #0077ff;
       transform: translateY(-26px); }
 
@@ -381,6 +381,47 @@
     .remove-modal .buttons .Yes {
       margin-right: 18px;
       width: 100px; }
+
+.join-modal {
+  padding: 15px; }
+  .join-modal .input_field {
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    color: #9098a9; }
+  .join-modal i {
+    margin-left: 5px;
+    cursor: pointer;
+    color: #9098a9;
+    transition: 0.5s; }
+    .join-modal i:hover {
+      opacity: 0.7; }
+  .join-modal button {
+    margin-left: 10px;
+    cursor: pointer; }
+
+.invite-modal {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 200;
+  font-size: 15px;
+  padding: 15px; }
+  .invite-modal button {
+    margin-top: 10px;
+    cursor: pointer; }
+  .invite-modal i {
+    margin-left: 5px;
+    cursor: pointer;
+    color: #9098a9;
+    transition: 0.5s; }
+    .invite-modal i:hover {
+      opacity: 0.7; }
+  .invite-modal .code {
+    margin-top: 3px;
+    padding: 5px;
+    display: inline-block;
+    border: #9098a9 1px solid;
+    border-radius: 15px;
+    opacity: 0.8; }
 
 * {
   margin: 0;

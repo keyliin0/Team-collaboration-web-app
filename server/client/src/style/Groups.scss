@@ -97,3 +97,55 @@
     }
   }
 }
+
+.join-modal {
+  padding: 15px;
+  & .input_field {
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    color: #9098a9;
+    @extend %input_material_text;
+  }
+  & i {
+    margin-left: 5px;
+    cursor: pointer;
+    color: #9098a9;
+    transition: 0.5s;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  & button {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}
+
+.invite-modal {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 200;
+  font-size: 15px;
+  padding: 15px;
+  & button {
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  & i {
+    margin-left: 5px;
+    cursor: pointer;
+    color: #9098a9;
+    transition: 0.5s;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  & .code {
+    margin-top: 3px;
+    padding: 5px;
+    display: inline-block;
+    border: #9098a9 1px solid;
+    border-radius: 15px;
+    opacity: 0.8;
+  }
+}

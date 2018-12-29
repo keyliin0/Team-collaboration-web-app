@@ -7,10 +7,7 @@ const _ = require("lodash");
 module.exports = app => {
   // fetching own groups
   app.get("/api/group/my_groups", RequireLogin, async (req, res) => {
-    var groups = [];
-    await Group.find({ _id: { $in: req.user._groups } }, (err, group) => {
-      if (group) groups = [...groups, ...group];
-    });
+    const groups = await Group.find({ _id: { $in: req.user._groups } });
     res.send(groups);
   });
   // creating a group
@@ -23,13 +20,14 @@ module.exports = app => {
       facebook: req.body.facebook,
       email: req.body.email,
       _creator: [req.user.id],
-      _users: [req.user]
+      _users: [req.user.id]
     });
     req.user._groups.push(mongoose.Types.ObjectId(group.id));
     await req.user.save();
     await group.save();
     res.send(group);
   });
+  // modify a group
   app.post("/api/group/modify", RequireLogin, async (req, res) => {
     await Group.findByIdAndUpdate(req.body.group_id, {
       name: req.body.name,
@@ -57,36 +55,55 @@ module.exports = app => {
   });
   // deleting a group
   app.post("/api/group/delete", RequireLogin, async (req, res) => {
-    await Group.findByIdAndRemove(
-      mongoose.Types.ObjectId(req.body.group_id),
-      async (err, group) => {
-        const users_id = [];
-        group._users.forEach(user => {
-          users_id.push(user.id);
-        });
-        console.log(users_id);
-        await User.findByIdAndUpdate(
-          { $in: users_id },
-          {
-            $pull: {
-              _groups: mongoose.Types.ObjectId(req.body.group_id)
-            }
+    await Group.findByIdAndRemove(req.body.group_id, async (err, group) => {
+      var users_id = [];
+      group._users.forEach(user_id => {
+        users_id.push(user_id);
+      });
+      await User.updateMany(
+        { _id: { $in: users_id } },
+        {
+          $pull: {
+            _groups: req.body.group_id
           }
-        );
-      }
-    );
-    res.send("group deleted");
+        }
+      );
+    });
+    res.send(true);
   });
-  app.post("/api/group/add", RequireLogin, async (req, res) => {
-    await Group.findOneAndUpdate(req.body.group_id, {
-      $push: {
-        _users: req.body.user_id
-      }
+  // add a user to a group
+  app.post("/api/group/join", RequireLogin, async (req, res) => {
+    const group_id = req.body.code.split("/")[0];
+    // check if the user is already in the group
+    if (req.user._groups.find(user_group_id => user_group_id == group_id)) {
+      res.send(true);
+      return;
+    }
+    // _______________
+    const group = await Group.findById(group_id);
+    if (!group || group.invitation_code !== req.body.code) {
+      res.send(false);
+      return;
+    }
+    group._users.push(req.user.id);
+    await group.save();
+    req.user._groups.push(group_id);
+    await req.user.save();
+    res.send(true);
+  });
+  // generate an invitation code for users
+  app.post("/api/group/invite", RequireLogin, async (req, res) => {
+    var code = "";
+    for (
+      ;
+      code.length < 8;
+      code += Math.random()
+        .toString(36)
+        .substr(2)
+    );
+    await Group.findByIdAndUpdate(req.body.group_id, {
+      invitation_code: req.body.group_id + "/" + code
     });
-    await User.findOneAndUpdate(req.body.user_id, {
-      $push: {
-        _groups: req.body.group_id
-      }
-    });
+    res.send(req.body.group_id + "/" + code);
   });
 };
