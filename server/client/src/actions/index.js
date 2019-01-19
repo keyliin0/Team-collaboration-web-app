@@ -149,3 +149,19 @@ export const CreateGroup = (
     email: email
   });
 };
+
+/* --------- chat -------------- */
+
+export const JoinChatGroup = group_id => dispatch => {
+  dispatch({
+    type: "JOIN_CHAT_GROUP",
+    payload: group_id
+  });
+};
+
+export const SendChatMessage = (group_id, message) => dispatch => {
+  dispatch({
+    type: "SEND_CHAT_MESSAGE",
+    payload: { group_id: group_id, message: message }
+  });
+};

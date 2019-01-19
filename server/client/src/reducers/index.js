@@ -3,10 +3,12 @@ import User from "./User";
 import Emails from "./Emails";
 import Selected_Emails from "./Selected_Emails";
 import Groups from "./Groups";
+import Chat_Messages from "./Chat_Messages";
 
 export default combineReducers({
   user: User,
   emails: Emails,
   selected_emails: Selected_Emails,
-  groups: Groups
+  groups: Groups,
+  chat_messages: Chat_Messages
 });

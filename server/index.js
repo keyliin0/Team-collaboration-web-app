@@ -5,12 +5,25 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const keys = require("./config/keys");
 const bodyParser = require("body-parser");
+const socket = require("socket.io");
+const redis = require("socket.io-redis");
+var amqp = require("amqp");
 
 // models
 require("./models/users");
 require("./models/groups");
 //db
 mongoose.connect(keys.mongodbURI);
+// rabbitmq
+const rabbitConn = amqp.createConnection({
+  url: keys.amqpURL
+});
+rabbitConn.on("ready", function() {
+  chatExchange = rabbitConn.exchange("chatExchange");
+});
+rabbitConn.on("error", function(e) {
+  console.log("Error from amqp: ", e);
+});
 
 // middlewares
 app.use(bodyParser.json());
@@ -47,4 +60,39 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT);
+const server = app.listen(PORT);
+const io = socket(server);
+
+//io.adapter(redis({ host: "localhost", port: 6379 }));
+io.on("connection", socket => {
+  console.log("aa");
+  let cookieString = socket.request.headers.cookie;
+  const req = { headers: { cookie: cookieString } };
+  var user;
+  cookiesession({ keys: [keys.cookiekey] })(req, {}, () => {
+    user = req.session.user;
+  });
+  socket.on("CreateChatMessage", (room, message) => {
+    const data = {
+      sender_id: user._id,
+      name: user.firstname,
+      lastname: user.lastname,
+      message: message,
+      userIMG: user.imgURL,
+      time: Date.now()
+    };
+    chatExchange.publish(room, data);
+  });
+  socket.on("join", room => {
+    socket.join(room);
+    rabbitConn.queue(room, {}, function(q) {
+      //Bind to chatExchange w/ "#" or "" binding key to listen to all messages.
+      q.bind("chatExchange", room);
+
+      //Subscribe When a message comes, send it back to browser
+      q.subscribe(function(data) {
+        io.in(room).emit("NewMessage", data);
+      });
+    });
+  });
+});

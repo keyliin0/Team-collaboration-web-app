@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
 import Mails from "./mail/Mails";
 import Groups from "./groups/Groups";
+import Chatroom from "./chat/Chatroom";
 import Utils from "./Utils";
 
 export default class Dashboard extends Component {
@@ -20,6 +21,7 @@ export default class Dashboard extends Component {
                 <Switch>
                   <Route path={"/mail"} component={Mails} />
                   <Route path={"/groups"} component={Groups} />
+                  <Route path={"/chat"} component={Chatroom} />
                 </Switch>
               </BrowserRouter>
             </div>

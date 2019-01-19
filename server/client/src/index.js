@@ -6,8 +6,13 @@ import { Provider } from "react-redux";
 import reducers from "./reducers";
 import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
+import { createMySocketMiddleware } from "./middlewares/socketIO";
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+const store = createStore(
+  reducers,
+  {},
+  applyMiddleware(reduxThunk, createMySocketMiddleware("http://localhost:5000"))
+);
 
 ReactDOM.render(
   <Provider store={store}>

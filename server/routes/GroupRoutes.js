@@ -12,9 +12,11 @@ module.exports = app => {
   });
   // creating a group
   app.post("/api/group/create", RequireLogin, async (req, res) => {
+    const default_img_url =
+      "https://www.thehindu.com/sci-tech/technology/internet/article17759222.ece/alternates/FREE_660/02th-egg-person";
     const group = await new Group({
       name: req.body.name,
-      imgURL: req.body.imgurl,
+      imgURL: req.body.imgurl === "" ? default_img_url : req.body.imgurl,
       instagram: req.body.instagram,
       twitter: req.body.twitter,
       facebook: req.body.facebook,
