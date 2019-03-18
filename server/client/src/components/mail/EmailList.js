@@ -8,7 +8,7 @@ import _ from "lodash";
 class EmailList extends Component {
   componentWillMount() {
     // if the there is some messages being loaded don't load anything
-    // so the no new messages will be loaded when the user press the back button while reading a message
+    // so the old messages will be loaded when the user press the back button while reading a message
     if (!this.props.messages.loading && !this.props.messages.emails)
       this.props.FetchEmails("default", FETCH_EMAILS, "INBOX");
   }
