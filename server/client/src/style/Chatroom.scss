@@ -75,7 +75,7 @@
       }
     }
     & .Message_List {
-      height: 73%;
+      height: 500px;
       overflow-y: auto;
       ul li {
         list-style-type: none;
@@ -103,6 +103,12 @@
           margin-left: 0;
           background-color: #3b86ff;
           color: #ffffff;
+        }
+        & .time {
+          display: inline-block;
+          margin: 10px;
+          color: grey;
+          font-size: 12px;
         }
       }
     }

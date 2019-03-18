@@ -488,7 +488,7 @@
         font-weight: 300px;
         display: inline-block; }
     .Chatroom .info .Message_List {
-      height: 73%;
+      height: 500px;
       overflow-y: auto; }
       .Chatroom .info .Message_List ul li {
         list-style-type: none;
@@ -513,6 +513,11 @@
           margin-left: 0;
           background-color: #3b86ff;
           color: #ffffff; }
+        .Chatroom .info .Message_List ul li .time {
+          display: inline-block;
+          margin: 10px;
+          color: grey;
+          font-size: 12px; }
     .Chatroom .info .send {
       bottom: 0;
       position: absolute;

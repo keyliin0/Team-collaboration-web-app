@@ -11,7 +11,6 @@ export const createMySocketMiddleware = url => {
       });
     });
     socket.on("NewMessage", data => {
-      console.log(data);
       storeAPI.dispatch({
         type: "CHAT_MESSAGE_RECEIVED",
         payload: data

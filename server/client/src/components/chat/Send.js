@@ -9,11 +9,12 @@ class Send extends Component {
   }
   handleKeyPress(event) {
     if (event.key === "Enter") {
-      this.props.SendChatMessage(this.props.group_id, this.state.message);
+      this.props.SendChatMessage(this.props.selected_conv, this.state.message);
       this.setState({ message: "" });
     }
   }
   render() {
+    if (!this.props.selected_conv) return <div />;
     return (
       <div className="send">
         <textarea
@@ -29,7 +30,11 @@ class Send extends Component {
   }
 }
 
+function mapStateToProps({ chat }) {
+  return { selected_conv: chat.selected_conv };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { SendChatMessage }
 )(Send);

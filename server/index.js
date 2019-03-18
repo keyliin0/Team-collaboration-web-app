@@ -12,6 +12,7 @@ var amqp = require("amqp");
 // models
 require("./models/users");
 require("./models/groups");
+require("./models/chat");
 //db
 mongoose.connect(keys.mongodbURI);
 // rabbitmq
@@ -46,6 +47,7 @@ require("./services/passport");
 /* ___ Mail Routes _____ */
 require("./routes/AuthRoutes")(app);
 require("./routes/MailRoutes")(app);
+require("./routes/ChatRoutes")(app);
 
 /* ____ Group routes _____ */
 require("./routes/GroupRoutes")(app);
@@ -66,22 +68,12 @@ const io = socket(server);
 //io.adapter(redis({ host: "localhost", port: 6379 }));
 io.on("connection", socket => {
   console.log("aa");
+  /* grab the cookie for the user informations */
   let cookieString = socket.request.headers.cookie;
   const req = { headers: { cookie: cookieString } };
   var user;
   cookiesession({ keys: [keys.cookiekey] })(req, {}, () => {
     user = req.session.user;
-  });
-  socket.on("CreateChatMessage", (room, message) => {
-    const data = {
-      sender_id: user._id,
-      name: user.firstname,
-      lastname: user.lastname,
-      message: message,
-      userIMG: user.imgURL,
-      time: Date.now()
-    };
-    chatExchange.publish(room, data);
   });
   socket.on("join", room => {
     socket.join(room);
@@ -94,5 +86,25 @@ io.on("connection", socket => {
         io.in(room).emit("NewMessage", data);
       });
     });
+  });
+  socket.on("CreateChatMessage", (room, message) => {
+    var data = {
+      author: user._id,
+      group_id: room,
+      message: message,
+      timestamp: Date.now()
+    };
+    const Chat = mongoose.model("chat");
+    const Message = new Chat(data);
+    Message.save();
+    data._id = Message.id;
+    data.author = {
+      _id: user._id,
+      imgURL: user.imgURL,
+      firstname: user.firstname,
+      lastname: user.lastname
+    };
+    console.log(data);
+    chatExchange.publish(room, data);
   });
 });

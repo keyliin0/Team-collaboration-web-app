@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FetchGroups, JoinChatGroup } from "../../actions";
+import {
+  FetchGroups,
+  JoinChatGroup,
+  SelectChatConversation,
+  FetchChatMessages
+} from "../../actions";
 import _ from "lodash";
 
 class Chat_List extends Component {
@@ -11,6 +16,10 @@ class Chat_List extends Component {
         this.props.JoinChatGroup(group._id);
       });
     });
+  }
+  HandleClick(group_id, name, imgURL) {
+    this.props.SelectChatConversation(group_id, name, imgURL);
+    this.props.FetchChatMessages(group_id, 0, 15);
   }
   renderGroups() {
     const { groups } = this.props;
@@ -26,7 +35,7 @@ class Chat_List extends Component {
         <li
           key={group._id}
           onClick={event =>
-            this.props.ChangeConversation(group._id, group.name, group.imgURL)
+            this.HandleClick(group._id, group.name, group.imgURL)
           }
         >
           <div className="image">
@@ -57,5 +66,5 @@ function mapStateToProps({ groups }) {
 
 export default connect(
   mapStateToProps,
-  { FetchGroups, JoinChatGroup }
+  { FetchGroups, JoinChatGroup, SelectChatConversation, FetchChatMessages }
 )(Chat_List);

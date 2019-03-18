@@ -22,6 +22,7 @@ export default class Dashboard extends Component {
                   <Route path={"/mail"} component={Mails} />
                   <Route path={"/groups"} component={Groups} />
                   <Route path={"/chat"} component={Chatroom} />
+                  <Route path={"/chat/:id"} component={Chatroom} />
                 </Switch>
               </BrowserRouter>
             </div>
