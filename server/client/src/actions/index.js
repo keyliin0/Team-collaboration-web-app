@@ -154,7 +154,7 @@ export const CreateGroup = (
 
 export const SelectChatConversation = group_id => dispatch => {
   dispatch({
-    type: "CHAT_SELECT_CONVERSATION",
+    type: types.CHAT_SELECT_CONVERSATION,
     payload: group_id
   });
 };
@@ -175,13 +175,13 @@ export const SendChatMessage = (group_id, message) => dispatch => {
 
 export const FetchChatMessages = (group_id, skip, limit) => async dispatch => {
   dispatch({
-    type: "CHAT_LOADING_MESSAGES"
+    type: types.CHAT_LOADING_MESSAGES
   });
   const request = await axios.get(
     "/api/chat/fetch/" + group_id + "/" + skip + "/" + limit
   );
   dispatch({
-    type: "CHAT_FETCH_MESSAGES",
+    type: types.CHAT_FETCH_MESSAGES,
     payload: request.data
   });
 };

@@ -444,6 +444,8 @@
       .Chatroom .chat_list ul li:hover {
         background-color: #f5f6fa;
         transition: 0.5s; }
+    .Chatroom .chat_list .active {
+      background-color: #f5f6fa; }
     .Chatroom .chat_list .image {
       display: inline-block;
       position: relative;

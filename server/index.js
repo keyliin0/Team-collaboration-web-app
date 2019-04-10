@@ -87,7 +87,8 @@ io.on("connection", socket => {
       });
     });
   });
-  socket.on("CreateChatMessage", (room, message) => {
+  socket.on("CreateChatMessage", async (room, message) => {
+    // room = group_id
     var data = {
       author: user._id,
       group_id: room,
@@ -106,5 +107,12 @@ io.on("connection", socket => {
     };
     console.log(data);
     chatExchange.publish(room, data);
+    const Group = mongoose.model("groups");
+    await Group.findByIdAndUpdate(room, {
+      last_chat_message: {
+        message: message,
+        timestamp: Date.now()
+      }
+    });
   });
 });

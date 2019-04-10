@@ -15,7 +15,11 @@ const GroupSchema = new Schema(
     email: { type: String, default: "" },
     _creator: { type: Schema.Types.ObjectId, ref: "users" },
     _users: [{ type: Schema.Types.ObjectId, ref: "users" }],
-    invitation_code: { type: String, default: "" }
+    invitation_code: { type: String, default: "" },
+    last_chat_message: {
+      message: { type: String, default: "Be the first to write a message!" },
+      timestamp: { type: Number, default: Date.now() }
+    }
   },
   { usePushEach: true }
 );
