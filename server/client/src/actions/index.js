@@ -185,3 +185,49 @@ export const FetchChatMessages = (group_id, skip, limit) => async dispatch => {
     payload: request.data
   });
 };
+
+/* --------- calendar -------------- */
+
+export const FetchCalendar = (group_id, month, year) => async dispatch => {
+  dispatch({
+    type: types.CLEAR_CALENDAR
+  });
+  const request = await axios.get(
+    "/api/calendar/fetch/" + group_id + "/" + month + "/" + year
+  );
+  dispatch({
+    type: types.FETCH_CALENDAR,
+    payload: request.data
+  });
+};
+
+export const DeleteTask = task_id => async dispatch => {
+  const request = await axios.post("/api/calendar/remove", {
+    event_id: task_id
+  });
+  dispatch({
+    type: types.DELETE_TASK,
+    task_id: task_id
+  });
+};
+export const CreateTask = (
+  group_id,
+  timestamp,
+  month,
+  year,
+  title,
+  description
+) => async dispatch => {
+  const request = await axios.post("/api/calendar/create", {
+    group_id: group_id,
+    timestamp: timestamp,
+    month: month,
+    year: year,
+    title: title,
+    description: description
+  });
+  dispatch({
+    type: types.ADD_TASK,
+    payload: request.data
+  });
+};

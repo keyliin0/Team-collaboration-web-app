@@ -1,0 +1,240 @@
+$day_cell_width: 171px;
+
+.calendar-container {
+  margin: auto;
+  margin-top: 5%;
+  width: 1197px;
+  background-color: white;
+  & .header {
+    text-align: center;
+    padding: 20px 0;
+    background: linear-gradient(
+      to bottom,
+      #fafbfd 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    border-bottom: 1px solid rgba(166, 168, 179, 0.12);
+    & p {
+      margin: 5px 0 0 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(81, 86, 93, 0.4);
+    }
+    & h5 {
+      display: inline;
+    }
+    & i {
+      color: #bcbccb;
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 17px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+  & .days {
+    & .day-name {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #99a1a7;
+      text-align: center;
+      border-bottom: 1px solid rgba(166, 168, 179, 0.12);
+      line-height: 50px;
+      font-weight: 500;
+      width: $day_cell_width;
+      display: inline-block;
+    }
+    & .day {
+      overflow: auto;
+      border-bottom: 1px solid rgba(166, 168, 179, 0.12);
+      border-right: 1px solid rgba(166, 168, 179, 0.12);
+      text-align: right;
+      //padding: 14px 20px;
+      letter-spacing: 1px;
+      font-size: 12px;
+      box-sizing: border-box;
+      color: #98a0a6;
+      display: inline-block;
+      width: $day_cell_width;
+      height: 120px;
+      z-index: 1;
+      & .task-primary {
+        padding: 2px;
+        text-align: left;
+        letter-spacing: 0;
+        cursor: pointer;
+        background: #4786ff;
+        border: 0;
+        border-radius: 4px;
+        align-self: end;
+        color: #fff;
+        box-shadow: 0 10px 14px rgba(71, 134, 255, 0.4);
+        font-size: 13px;
+        margin: 3px;
+        &:hover {
+          opacity: 0.7;
+          transition-duration: 0.5s;
+        }
+        & .task__detail {
+          width: 500px;
+          position: absolute;
+          left: 0;
+          top: calc(100% + 10px);
+          background: #fff;
+          border: 1px solid rgba(166, 168, 179, 0.2);
+          color: #000;
+          padding: 20px;
+          box-sizing: border-box;
+          border-radius: 4px;
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+          z-index: 999;
+
+          &:after,
+          &:before {
+            bottom: 100%;
+            left: 30%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+          }
+
+          &:before {
+            border-bottom-color: rgba(166, 168, 179, 0.2);
+            border-width: 8px;
+            margin-left: -8px;
+          }
+
+          &:after {
+            border-bottom-color: #fff;
+            border-width: 6px;
+            margin-left: -6px;
+          }
+
+          h2 {
+            font-size: 15px;
+            margin: 0;
+            color: #51565d;
+          }
+
+          p {
+            margin-top: 4px;
+            font-size: 12px;
+            margin-bottom: 0;
+            font-weight: 500;
+            color: rgba(#51565d, 0.7);
+          }
+        }
+      }
+    }
+    & .day-disabled {
+      color: rgba(152, 160, 166, 0.6);
+      background-color: #ffffff;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f9f9fa' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+      cursor: not-allowed;
+    }
+  }
+}
+
+.task-modal {
+  padding: 10px;
+  width: 260px;
+  height: 100%;
+  & .title {
+    color: #4d4f5c;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  & .time {
+    & i {
+      margin: 3px;
+    }
+    color: #a5a4bf;
+  }
+  & .description {
+    color: #4d4f5c;
+    & i {
+      margin: 3px;
+    }
+  }
+  & .buttons {
+    margin-top: 15px;
+    text-align: right;
+    & button {
+      cursor: pointer;
+      margin-left: 3px;
+    }
+  }
+}
+
+.add-task-modal {
+  padding: 10px;
+  width: 260px;
+  height: 100%;
+  & .title {
+    width: 190px;
+    text-align: left;
+    position: relative;
+    color: #9098a9;
+    margin-bottom: 10px;
+    @extend %input_material_text;
+  }
+  & .react-datepicker-popper {
+    width: 300px;
+  }
+  & .react-datepicker-wrapper .react-datepicker__input-container input {
+    border: none;
+    -webkit-appearance: none;
+    border-bottom: 2px solid #c8ccd4;
+    outline: none;
+    padding: 12px 0px;
+    transition: 0.2s;
+    width: 100%;
+    &:not(:placeholder-shown) {
+      & + span {
+        color: #9098a9;
+        transform: translateY(-26px);
+      }
+    }
+    &:focus {
+      border-bottom: 2px solid #0077ff;
+      & + span {
+        color: #0077ff;
+        transform: translateY(-26px);
+      }
+    }
+  }
+  & .Description {
+    border: none;
+    -webkit-appearance: none;
+    border-bottom: 2px solid #c8ccd4;
+    outline: none;
+    padding: 12px 0px;
+    transition: 0.2s;
+    width: 100%;
+    height: 150px;
+    &:not(:placeholder-shown) {
+      & + span {
+        color: #9098a9;
+        transform: translateY(-26px);
+      }
+    }
+    &:focus {
+      border-bottom: 2px solid #0077ff;
+      & + span {
+        color: #0077ff;
+        transform: translateY(-26px);
+      }
+    }
+  }
+  & button {
+    margin-top: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

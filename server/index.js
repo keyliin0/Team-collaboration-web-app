@@ -13,6 +13,7 @@ var amqp = require("amqp");
 require("./models/users");
 require("./models/groups");
 require("./models/chat");
+require("./models/calendar");
 //db
 mongoose.connect(keys.mongodbURI);
 // rabbitmq
@@ -44,13 +45,11 @@ require("./services/passport");
 
 // routes
 
-/* ___ Mail Routes _____ */
 require("./routes/AuthRoutes")(app);
 require("./routes/MailRoutes")(app);
 require("./routes/ChatRoutes")(app);
-
-/* ____ Group routes _____ */
 require("./routes/GroupRoutes")(app);
+require("./routes/CalendarRoutes")(app);
 
 // config
 if (process.env.NODE_ENV === "production") {
