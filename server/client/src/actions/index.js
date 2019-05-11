@@ -201,16 +201,16 @@ export const FetchCalendar = (group_id, month, year) => async dispatch => {
   });
 };
 
-export const DeleteTask = task_id => async dispatch => {
+export const DeleteEvent = event_id => async dispatch => {
   const request = await axios.post("/api/calendar/remove", {
-    event_id: task_id
+    event_id: event_id
   });
   dispatch({
-    type: types.DELETE_TASK,
-    task_id: task_id
+    type: types.DELETE_EVENT,
+    event_id: event_id
   });
 };
-export const CreateTask = (
+export const CreateEvent = (
   group_id,
   timestamp,
   month,
@@ -227,7 +227,7 @@ export const CreateTask = (
     description: description
   });
   dispatch({
-    type: types.ADD_TASK,
+    type: types.ADD_EVENT,
     payload: request.data
   });
 };

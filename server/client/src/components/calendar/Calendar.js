@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Days from "./Days";
-import AddTask from "./AddTask";
+import AddEvent from "./AddEvent";
 import { connect } from "react-redux";
 import { FetchCalendar } from "../../actions";
 
@@ -67,7 +67,7 @@ class Calendar extends Component {
           </div>
         ) : (
           <div className="header">
-            <AddTask group_id={this.props.match.params.id} />
+            <AddEvent group_id={this.props.match.params.id} />
             <i
               className="fas fa-chevron-circle-left"
               onClick={event => this.PreviousMonth()}

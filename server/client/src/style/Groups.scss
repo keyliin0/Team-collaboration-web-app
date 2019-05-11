@@ -1,12 +1,12 @@
 .groups {
   //background-color: white;
+  margin: auto;
+  margin-top: 5%;
   & .empty_list {
     font-weight: bold;
     font-size: 20px;
     text-align: center;
   }
-  margin: auto;
-  margin-top: 5%;
   & .info {
     animation: show 2s;
     color: #a4afb7;

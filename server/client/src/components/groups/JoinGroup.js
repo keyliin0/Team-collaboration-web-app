@@ -25,6 +25,8 @@ class JoinGroup extends Component {
     else return <div />;
   }
   renderButton() {
+    if (this.state.code === "")
+      return <button className="btn btn-primary disabled">Use</button>;
     if (this.state.loading) return <div className="loader-small" />;
     return (
       <button className="btn btn-primary " onClick={event => this.onSubmit()}>

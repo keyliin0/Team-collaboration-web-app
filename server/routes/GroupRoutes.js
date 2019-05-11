@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const RequireLogin = require("../middlewares/RequireLogin");
 const Group = mongoose.model("groups");
 const User = mongoose.model("users");
+const ObjectId = require("mongoose").Types.ObjectId;
 const _ = require("lodash");
 
 module.exports = app => {
@@ -79,6 +80,11 @@ module.exports = app => {
     // check if the user is already in the group
     if (req.user._groups.find(user_group_id => user_group_id == group_id)) {
       res.send(true);
+      return;
+    }
+    if (!ObjectId.isValid(group_id)) {
+      // check if the id is not a valid mongodb id
+      res.send(false);
       return;
     }
     // _______________

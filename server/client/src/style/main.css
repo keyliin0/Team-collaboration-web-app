@@ -282,7 +282,7 @@
   opacity: 0.5;
   cursor: default !important; }
 
-.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span, .groups .modify .input_field span, .join-modal .input_field span, .add-task-modal .title span {
+.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span, .groups .modify .input_field span, .join-modal .input_field span, .add-event-modal .title span {
   pointer-events: none;
   position: absolute;
   top: 16px;
@@ -290,7 +290,7 @@
   transform-origin: 0 0;
   transition: all 0.2s ease; }
 
-.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input, .groups .modify .input_field input, .join-modal .input_field input, .add-task-modal .title input {
+.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input, .groups .modify .input_field input, .join-modal .input_field input, .add-event-modal .title input {
   border: none;
   -webkit-appearance: none;
   border-bottom: 2px solid #c8ccd4;
@@ -298,12 +298,12 @@
   padding: 12px 0px;
   transition: 0.2s;
   width: 100%; }
-  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span, .groups .modify .input_field input:not(:placeholder-shown) + span, .join-modal .input_field input:not(:placeholder-shown) + span, .add-task-modal .title input:not(:placeholder-shown) + span {
+  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span, .groups .modify .input_field input:not(:placeholder-shown) + span, .join-modal .input_field input:not(:placeholder-shown) + span, .add-event-modal .title input:not(:placeholder-shown) + span {
     color: #9098a9;
     transform: translateY(-26px); }
-  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus, .groups .modify .input_field input:focus, .join-modal .input_field input:focus, .add-task-modal .title input:focus {
+  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus, .groups .modify .input_field input:focus, .join-modal .input_field input:focus, .add-event-modal .title input:focus {
     border-bottom: 2px solid #0077ff; }
-    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span, .groups .modify .input_field input:focus + span, .join-modal .input_field input:focus + span, .add-task-modal .title input:focus + span {
+    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span, .groups .modify .input_field input:focus + span, .join-modal .input_field input:focus + span, .add-event-modal .title input:focus + span {
       color: #0077ff;
       transform: translateY(-26px); }
 
@@ -546,6 +546,41 @@
           color: #3b86ff;
           font-size: 13px; }
 
+.calendar-mygroups {
+  text-align: center;
+  margin: auto;
+  margin-top: 5%; }
+  .calendar-mygroups .title {
+    font-weight: bold;
+    font-size: 20px; }
+  .calendar-mygroups .info {
+    animation: show 2s;
+    text-align: center;
+    margin: 50px;
+    width: 250px;
+    height: 105px;
+    background-color: white;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+    display: inline-block; }
+    .calendar-mygroups .info:hover {
+      transition-duration: 0.5s;
+      opacity: 0.9;
+      background-color: #f7f8f9;
+      cursor: pointer; }
+    .calendar-mygroups .info .picture {
+      margin-top: 10%;
+      display: inline-block; }
+      .calendar-mygroups .info .picture img {
+        height: 60px;
+        widows: 60px; }
+    .calendar-mygroups .info .desc {
+      font-weight: bold;
+      color: #4d4f5c;
+      margin-left: 5%;
+      display: inline-block; }
+
 .calendar-container {
   margin: auto;
   margin-top: 5%;
@@ -594,7 +629,7 @@
     width: 171px;
     height: 120px;
     z-index: 1; }
-    .calendar-container .days .day .task-primary {
+    .calendar-container .days .day .event-primary {
       padding: 2px;
       text-align: left;
       letter-spacing: 0;
@@ -607,10 +642,10 @@
       box-shadow: 0 10px 14px rgba(71, 134, 255, 0.4);
       font-size: 13px;
       margin: 3px; }
-      .calendar-container .days .day .task-primary:hover {
+      .calendar-container .days .day .event-primary:hover {
         opacity: 0.7;
         transition-duration: 0.5s; }
-      .calendar-container .days .day .task-primary .task__detail {
+      .calendar-container .days .day .event-primary .event__detail {
         width: 500px;
         position: absolute;
         left: 0;
@@ -623,7 +658,7 @@
         border-radius: 4px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
         z-index: 999; }
-        .calendar-container .days .day .task-primary .task__detail:after, .calendar-container .days .day .task-primary .task__detail:before {
+        .calendar-container .days .day .event-primary .event__detail:after, .calendar-container .days .day .event-primary .event__detail:before {
           bottom: 100%;
           left: 30%;
           border: solid transparent;
@@ -632,19 +667,19 @@
           width: 0;
           position: absolute;
           pointer-events: none; }
-        .calendar-container .days .day .task-primary .task__detail:before {
+        .calendar-container .days .day .event-primary .event__detail:before {
           border-bottom-color: rgba(166, 168, 179, 0.2);
           border-width: 8px;
           margin-left: -8px; }
-        .calendar-container .days .day .task-primary .task__detail:after {
+        .calendar-container .days .day .event-primary .event__detail:after {
           border-bottom-color: #fff;
           border-width: 6px;
           margin-left: -6px; }
-        .calendar-container .days .day .task-primary .task__detail h2 {
+        .calendar-container .days .day .event-primary .event__detail h2 {
           font-size: 15px;
           margin: 0;
           color: #51565d; }
-        .calendar-container .days .day .task-primary .task__detail p {
+        .calendar-container .days .day .event-primary .event__detail p {
           margin-top: 4px;
           font-size: 12px;
           margin-bottom: 0;
@@ -656,42 +691,42 @@
     background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f9f9fa' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
     cursor: not-allowed; }
 
-.task-modal {
+.event-modal {
   padding: 10px;
   width: 260px;
   height: 100%; }
-  .task-modal .title {
+  .event-modal .title {
     color: #4d4f5c;
     font-weight: bold;
     font-size: 15px; }
-  .task-modal .time {
+  .event-modal .time {
     color: #a5a4bf; }
-    .task-modal .time i {
+    .event-modal .time i {
       margin: 3px; }
-  .task-modal .description {
+  .event-modal .description {
     color: #4d4f5c; }
-    .task-modal .description i {
+    .event-modal .description i {
       margin: 3px; }
-  .task-modal .buttons {
+  .event-modal .buttons {
     margin-top: 15px;
     text-align: right; }
-    .task-modal .buttons button {
+    .event-modal .buttons button {
       cursor: pointer;
       margin-left: 3px; }
 
-.add-task-modal {
+.add-event-modal {
   padding: 10px;
   width: 260px;
   height: 100%; }
-  .add-task-modal .title {
+  .add-event-modal .title {
     width: 190px;
     text-align: left;
     position: relative;
     color: #9098a9;
     margin-bottom: 10px; }
-  .add-task-modal .react-datepicker-popper {
+  .add-event-modal .react-datepicker-popper {
     width: 300px; }
-  .add-task-modal .react-datepicker-wrapper .react-datepicker__input-container input {
+  .add-event-modal .react-datepicker-wrapper .react-datepicker__input-container input {
     border: none;
     -webkit-appearance: none;
     border-bottom: 2px solid #c8ccd4;
@@ -699,15 +734,15 @@
     padding: 12px 0px;
     transition: 0.2s;
     width: 100%; }
-    .add-task-modal .react-datepicker-wrapper .react-datepicker__input-container input:not(:placeholder-shown) + span {
+    .add-event-modal .react-datepicker-wrapper .react-datepicker__input-container input:not(:placeholder-shown) + span {
       color: #9098a9;
       transform: translateY(-26px); }
-    .add-task-modal .react-datepicker-wrapper .react-datepicker__input-container input:focus {
+    .add-event-modal .react-datepicker-wrapper .react-datepicker__input-container input:focus {
       border-bottom: 2px solid #0077ff; }
-      .add-task-modal .react-datepicker-wrapper .react-datepicker__input-container input:focus + span {
+      .add-event-modal .react-datepicker-wrapper .react-datepicker__input-container input:focus + span {
         color: #0077ff;
         transform: translateY(-26px); }
-  .add-task-modal .Description {
+  .add-event-modal .Description {
     border: none;
     -webkit-appearance: none;
     border-bottom: 2px solid #c8ccd4;
@@ -716,18 +751,24 @@
     transition: 0.2s;
     width: 100%;
     height: 150px; }
-    .add-task-modal .Description:not(:placeholder-shown) + span {
+    .add-event-modal .Description:not(:placeholder-shown) + span {
       color: #9098a9;
       transform: translateY(-26px); }
-    .add-task-modal .Description:focus {
+    .add-event-modal .Description:focus {
       border-bottom: 2px solid #0077ff; }
-      .add-task-modal .Description:focus + span {
+      .add-event-modal .Description:focus + span {
         color: #0077ff;
         transform: translateY(-26px); }
-  .add-task-modal button {
+  .add-event-modal button {
     margin-top: 10px; }
-    .add-task-modal button:hover {
+    .add-event-modal button:hover {
       cursor: pointer; }
+
+@keyframes show {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 
 * {
   margin: 0;

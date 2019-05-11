@@ -4,19 +4,21 @@ import { connect } from "react-redux";
 import moment from "moment";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { CreateTask, FetchCalendar } from "../../actions";
+import { CreateEvent, FetchCalendar } from "../../actions";
 
-class AddTask extends Component {
+const INITIAL_STATE = {
+  open: false,
+  code: null,
+  loading: false,
+  date: new Date(),
+  title: "",
+  description: ""
+};
+
+class AddEvent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      open: false,
-      code: null,
-      loading: false,
-      date: new Date(),
-      title: "",
-      description: ""
-    };
+    this.state = INITIAL_STATE;
     this.handleChange = this.handleChange.bind(this);
   }
   onOpenModal = () => {
@@ -31,25 +33,27 @@ class AddTask extends Component {
     });
   }
   handleSubmit() {
-    this.props.CreateTask(
-      this.props.group_id,
-      this.state.date.getTime(),
-      this.state.date.getMonth(),
-      this.state.date.getFullYear(),
-      this.state.title,
-      this.state.description
-    );
-    this.setState({ open: false });
+    this.setState({ loading: true });
+    this.props
+      .CreateEvent(
+        this.props.group_id,
+        this.state.date.getTime(),
+        this.state.date.getMonth(),
+        this.state.date.getFullYear(),
+        this.state.title,
+        this.state.description
+      )
+      .then(() => this.setState(INITIAL_STATE));
   }
   render() {
     const { open } = this.state;
     return (
-      <div className="add-task">
-        <div className="add-task-button">
+      <div className="add-event">
+        <div className="add-event-button">
           <i onClick={this.onOpenModal} className="fas fa-plus" />
         </div>
         <Modal open={open} onClose={this.onCloseModal} center>
-          <div className="add-task-modal">
+          <div className="add-event-modal">
             <div className="header">
               <h5>Add an event</h5>
             </div>
@@ -77,12 +81,16 @@ class AddTask extends Component {
                 this.setState({ description: event.target.value })
               }
             />
-            <button
-              className="btn btn-primary"
-              onClick={event => this.handleSubmit()}
-            >
-              <i className="fas fa-check" />
-            </button>
+            {this.state.loading ? (
+              <div className="loader-small" />
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={event => this.handleSubmit()}
+              >
+                <i className="fas fa-check" />
+              </button>
+            )}
           </div>
         </Modal>
       </div>
@@ -92,5 +100,5 @@ class AddTask extends Component {
 
 export default connect(
   null,
-  { CreateTask, FetchCalendar }
-)(AddTask);
+  { CreateEvent, FetchCalendar }
+)(AddEvent);

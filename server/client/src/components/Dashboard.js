@@ -5,6 +5,7 @@ import Mails from "./mail/Mails";
 import Groups from "./groups/Groups";
 import Chatroom from "./chat/Chatroom";
 import Calendar from "./calendar/Calendar";
+import CalendarGroups from "./calendar/MyGroups";
 import Utils from "./Utils";
 
 export default class Dashboard extends Component {
@@ -25,6 +26,7 @@ export default class Dashboard extends Component {
                   <Route path={"/chat"} component={Chatroom} />
                   <Route path={"/chat/:id"} component={Chatroom} />
                   <Route path={"/calendar/:id"} component={Calendar} />
+                  <Route path={"/calendar"} component={CalendarGroups} />
                 </Switch>
               </BrowserRouter>
             </div>

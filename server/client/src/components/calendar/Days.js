@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import Task from "./Task";
+import Event from "./Event";
 
 class Days extends Component {
   getMonday() {
@@ -33,10 +33,10 @@ class Days extends Component {
       );
     return res;
   }
-  RenderTasks(day) {
-    return _.map(this.props.calendar, task => {
-      const d = new Date(task.timestamp);
-      if (d.getDate() == day) return <Task key={task._id} task={task} />;
+  RenderEvents(day) {
+    return _.map(this.props.calendar, event => {
+      const d = new Date(event.timestamp);
+      if (d.getDate() == day) return <Event key={event._id} event={event} />;
     });
   }
   RenderDays() {
@@ -50,7 +50,7 @@ class Days extends Component {
       res.push(
         <div className="day" key={i}>
           {i}
-          {this.RenderTasks(i)}
+          {this.RenderEvents(i)}
         </div>
       );
     return res;

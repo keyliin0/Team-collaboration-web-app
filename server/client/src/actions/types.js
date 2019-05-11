@@ -22,5 +22,5 @@ export const CHAT_CLEAR_MESSAGES = "CHAT_CLEAR_MESSAGES";
 // calendar action types
 export const FETCH_CALENDAR = "FETCH_CALENDAR";
 export const CLEAR_CALENDAR = "CLEAR_CALENDAR";
-export const DELETE_TASK = "DELETE_TASK";
-export const ADD_TASK = "ADD_TASK";
+export const DELETE_EVENT = "DELETE_EVENT";
+export const ADD_EVENT = "ADD_EVENT";
