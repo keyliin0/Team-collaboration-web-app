@@ -36,7 +36,12 @@ class Days extends Component {
   RenderEvents(day) {
     return _.map(this.props.calendar, event => {
       const d = new Date(event.timestamp);
-      if (d.getDate() == day) return <Event key={event._id} event={event} />;
+      if (
+        d.getDate() == day &&
+        d.getMonth() == this.props.month &&
+        d.getFullYear() == this.props.year
+      )
+        return <Event key={event._id} event={event} />;
     });
   }
   RenderDays() {

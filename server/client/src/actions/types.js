@@ -24,3 +24,4 @@ export const FETCH_CALENDAR = "FETCH_CALENDAR";
 export const CLEAR_CALENDAR = "CLEAR_CALENDAR";
 export const DELETE_EVENT = "DELETE_EVENT";
 export const ADD_EVENT = "ADD_EVENT";
+export const MODIFY_EVENT = "MODIFY_EVENT";

@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 import Modal from "react-responsive-modal";
 import { connect } from "react-redux";
-import moment from "moment";
+import { withRouter } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { CreateEvent } from "../../actions";
+import { ModifyEvent, FetchCalendar } from "../../actions";
 
-const INITIAL_STATE = {
-  open: false,
-  loading: false,
-  date: new Date(),
-  title: "",
-  description: ""
-};
-
-class AddEvent extends Component {
+class EditEvent extends Component {
   constructor(props) {
     super(props);
-    this.state = INITIAL_STATE;
+    this.state = {
+      open: false,
+      loading: false,
+      date: new Date(this.props._event.timestamp),
+      title: this.props._event.title,
+      description: this.props._event.description
+    };
     this.handleDateChange = this.handleDateChange.bind(this);
   }
   onOpenModal = () => {
@@ -34,23 +32,23 @@ class AddEvent extends Component {
   handleSubmit() {
     this.setState({ loading: true });
     this.props
-      .CreateEvent(
-        this.props.group_id,
+      .ModifyEvent(
+        this.props._event._id,
         this.state.date.getTime(),
         this.state.date.getMonth(),
         this.state.date.getFullYear(),
         this.state.title,
         this.state.description
       )
-      .then(() => this.setState(INITIAL_STATE));
+      .then(() => this.setState({ open: false }));
   }
   render() {
     const { open } = this.state;
     return (
       <div className="add-event">
-        <div className="add-event-button">
-          <i onClick={this.onOpenModal} className="fas fa-plus" />
-        </div>
+        <button className="btn btn-primary" onClick={this.onOpenModal}>
+          <i className="fas fa-edit" />
+        </button>
         <Modal open={open} onClose={this.onCloseModal} center>
           <div className="add-event-modal">
             <div className="header">
@@ -97,7 +95,9 @@ class AddEvent extends Component {
   }
 }
 
-export default connect(
-  null,
-  { CreateEvent }
-)(AddEvent);
+export default withRouter(
+  connect(
+    null,
+    { ModifyEvent, FetchCalendar }
+  )(EditEvent)
+);

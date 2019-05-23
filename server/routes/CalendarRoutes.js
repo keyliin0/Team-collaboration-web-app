@@ -31,4 +31,18 @@ module.exports = app => {
     await Calendar.findByIdAndRemove(req.body.event_id);
     res.send(true);
   });
+  app.post("/api/calendar/modify", RequireLogin, async (req, res) => {
+    const event = await Calendar.findByIdAndUpdate(
+      req.body.event_id,
+      {
+        title: req.body.title,
+        description: req.body.description,
+        timestamp: req.body.timestamp,
+        month: req.body.month,
+        year: req.body.year
+      },
+      { new: true }
+    );
+    res.send(event);
+  });
 };

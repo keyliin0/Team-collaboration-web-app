@@ -231,3 +231,25 @@ export const CreateEvent = (
     payload: request.data
   });
 };
+
+export const ModifyEvent = (
+  event_id,
+  timestamp,
+  month,
+  year,
+  title,
+  description
+) => async dispatch => {
+  const request = await axios.post("/api/calendar/modify", {
+    event_id: event_id,
+    timestamp: timestamp,
+    month: month,
+    year: year,
+    title: title,
+    description: description
+  });
+  dispatch({
+    type: types.MODIFY_EVENT,
+    payload: request.data
+  });
+};

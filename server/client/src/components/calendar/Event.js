@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Modal from "react-responsive-modal";
 import moment from "moment";
 import { DeleteEvent } from "../../actions";
+import EditEvent from "./EditEvent";
 
 class Event extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class Event extends Component {
             <div className="time">
               <i className="far fa-clock" />
               {moment(this.props.event.timestamp).format(
-                "MMMM Do YYYY, h:mm:ss a"
+                "MMMM Do YYYY, h:mm a"
               )}
             </div>
             <hr />
@@ -47,9 +48,9 @@ class Event extends Component {
               >
                 <i className="far fa-trash-alt" />
               </button>
-              <button className="btn btn-primary">
-                <i className="fas fa-edit" />
-              </button>
+              <div className="edit-event">
+                <EditEvent _event={this.props.event} />
+              </div>
             </div>
           </div>
         </Modal>
