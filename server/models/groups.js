@@ -5,11 +5,7 @@ const GroupSchema = new Schema(
   {
     name: String,
     imgURL: { type: String, default: "" },
-    instagram: {
-      type: String,
-      default:
-        "https://www.thehindu.com/sci-tech/technology/internet/article17759222.ece/alternates/FREE_660/02th-egg-person"
-    },
+    instagram: { type: String, default: "" },
     twitter: { type: String, default: "" },
     facebook: { type: String, default: "" },
     email: { type: String, default: "" },

@@ -4,7 +4,7 @@ const Calendar = mongoose.model("calendar");
 
 module.exports = app => {
   app.post("/api/calendar/create", RequireLogin, async (req, res) => {
-    const event = await new Calendar({
+    const event = new Calendar({
       group_id: req.body.group_id,
       title: req.body.title,
       description: req.body.description,

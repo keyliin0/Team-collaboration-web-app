@@ -773,6 +773,198 @@
   100% {
     opacity: 1; } }
 
+.tasks-mygroups {
+  text-align: center;
+  margin: auto;
+  margin-top: 5%; }
+  .tasks-mygroups .title {
+    font-weight: bold;
+    font-size: 20px; }
+  .tasks-mygroups .info {
+    animation: show 2s;
+    text-align: center;
+    margin: 50px;
+    width: 250px;
+    height: 105px;
+    background-color: white;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
+    display: inline-block; }
+    .tasks-mygroups .info:hover {
+      transition-duration: 0.5s;
+      opacity: 0.9;
+      background-color: #f7f8f9;
+      cursor: pointer; }
+    .tasks-mygroups .info .picture {
+      margin-top: 10%;
+      display: inline-block; }
+      .tasks-mygroups .info .picture img {
+        height: 60px;
+        widows: 60px; }
+    .tasks-mygroups .info .desc {
+      font-weight: bold;
+      color: #4d4f5c;
+      margin-left: 5%;
+      display: inline-block; }
+
+.taskboard-container {
+  background-color: #f7f8f9;
+  margin: auto;
+  margin-top: 5%;
+  text-align: center; }
+  .taskboard-container .btn-group {
+    margin-top: 2%; }
+    .taskboard-container .btn-group button {
+      margin-left: 7px;
+      margin-right: 7px;
+      cursor: pointer; }
+  .taskboard-container .task-list {
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: #e2e4e6;
+    border-radius: 0.3rem; }
+    .taskboard-container .task-list .title {
+      font-size: 17px;
+      color: #333;
+      padding: 1rem; }
+    .taskboard-container .task-list .items {
+      align-content: start;
+      padding: 0 0.6rem 0.5rem;
+      overflow-y: auto;
+      height: 500px; }
+      .taskboard-container .task-list .items::-webkit-scrollbar {
+        width: 10px; }
+      .taskboard-container .task-list .items::-webkit-scrollbar-thumb {
+        background-color: #c4c9cc;
+        border-right: 2px solid #e2e4e6;
+        border-radius: 0; }
+      .taskboard-container .task-list .items li {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.3;
+        background-color: #fff;
+        padding: 0.65rem 0.6rem;
+        color: #4d4d4d;
+        border-bottom: 0.1rem solid #ccc;
+        border-radius: 0.3rem;
+        margin-bottom: 0.6rem;
+        word-wrap: break-word;
+        cursor: pointer;
+        list-style: none; }
+        .taskboard-container .task-list .items li:hover {
+          background-color: #eee; }
+    .taskboard-container .task-list .add-card-btn {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      color: #838c91;
+      padding: 5px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer; }
+      .taskboard-container .task-list .add-card-btn:hover {
+        background-color: #cdd2d4;
+        color: #4d4d4d;
+        text-decoration: underline; }
+
+.task-modal {
+  max-height: 600px;
+  overflow-y: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 320px; }
+  .task-modal .card-body {
+    padding: 20px 20px; }
+    .task-modal .card-body .name {
+      font-size: 19px; }
+    .task-modal .card-body .description {
+      font-size: 15px;
+      line-height: 1.4;
+      color: #999; }
+    .task-modal .card-body .users {
+      padding-left: 15px;
+      display: block;
+      list-style-type: none;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px; }
+      .task-modal .card-body .users li {
+        display: inline; }
+        .task-modal .card-body .users li img {
+          border: 2px solid #fff;
+          margin-left: -10px;
+          position: relative; }
+          .task-modal .card-body .users li img:hover {
+            transform: scale(1.3);
+            cursor: pointer;
+            z-index: 10; }
+  .task-modal .section {
+    border-top: 1px solid #e5e5e5;
+    background-color: #f8f8f8;
+    padding: 13px 20px; }
+    .task-modal .section i {
+      font-size: 20px;
+      color: #999;
+      margin: 0;
+      border: none;
+      overflow: visible;
+      text-transform: none;
+      padding: 0;
+      background-color: transparent;
+      display: inline-block;
+      line-height: 0; }
+  .task-modal .comments {
+    margin-top: 5px;
+    list-style-type: none; }
+    .task-modal .comments li {
+      margin-top: 3%;
+      position: relative; }
+      .task-modal .comments li .image {
+        position: absolute;
+        top: 20px;
+        left: 0; }
+      .task-modal .comments li .comment {
+        margin-left: 40px;
+        width: 250px;
+        display: inline-block;
+        position: relative;
+        padding: 7px 5px;
+        border-radius: 3px;
+        background-color: #f5f6fa;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); }
+        .task-modal .comments li .comment:before {
+          position: absolute;
+          right: 100%;
+          top: 33px;
+          content: "";
+          display: block;
+          border: 10px solid transparent;
+          border-right-color: #f5f6fa; }
+        .task-modal .comments li .comment .name {
+          font-size: 16px;
+          display: inline; }
+        .task-modal .comments li .comment .time {
+          margin-left: 3px;
+          color: #999; }
+        .task-modal .comments li .comment .content {
+          color: #4d4f5c;
+          font-size: 14px; }
+  .task-modal .make-comment {
+    text-align: center; }
+    .task-modal .make-comment .btn {
+      margin-top: 5px;
+      padding: 5px;
+      cursor: pointer; }
+  .task-modal .manage {
+    margin-top: 5px; }
+    .task-modal .manage button {
+      margin-left: 5px;
+      cursor: pointer; }
+
 * {
   margin: 0;
   padding: 0;

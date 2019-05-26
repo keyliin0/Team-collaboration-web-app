@@ -14,6 +14,8 @@ require("./models/users");
 require("./models/groups");
 require("./models/chat");
 require("./models/calendar");
+require("./models/tasks");
+require("./models/task_comments");
 //db
 mongoose.connect(keys.mongodbURI);
 // rabbitmq
@@ -50,6 +52,7 @@ require("./routes/MailRoutes")(app);
 require("./routes/ChatRoutes")(app);
 require("./routes/GroupRoutes")(app);
 require("./routes/CalendarRoutes")(app);
+require("./routes/TaskRoutes")(app);
 
 // config
 if (process.env.NODE_ENV === "production") {
