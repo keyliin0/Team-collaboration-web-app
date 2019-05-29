@@ -11,6 +11,13 @@ module.exports = app => {
     const groups = await Group.find({ _id: { $in: req.user._groups } });
     res.send(groups);
   });
+  // fetching group users
+  app.get("/api/group/users/:group_id", RequireLogin, async (req, res) => {
+    const users = await Group.findById(req.params.group_id)
+      .populate("_users", "firstname lastname imgURL")
+      .select("_users");
+    res.send(users._users);
+  });
   // creating a group
   app.post("/api/group/create", RequireLogin, async (req, res) => {
     const default_img_url =

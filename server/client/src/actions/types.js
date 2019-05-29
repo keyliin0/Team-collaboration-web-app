@@ -25,3 +25,8 @@ export const CLEAR_CALENDAR = "CLEAR_CALENDAR";
 export const DELETE_EVENT = "DELETE_EVENT";
 export const ADD_EVENT = "ADD_EVENT";
 export const MODIFY_EVENT = "MODIFY_EVENT";
+// tasks action types
+export const FETCH_TASKS = "FETCH_TASKS";
+export const DELETE_TASK = "DELETE_TASK";
+export const MODIFY_TASK = "MODIFY_TASK";
+export const ADD_TASK = "ADD_TASK";

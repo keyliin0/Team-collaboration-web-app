@@ -15,13 +15,12 @@ module.exports = app => {
     await task.save();
     res.send(task);
   });
-  app.post("/api/tasks/add_users", RequireLogin, async (req, res) => {
-    const task = Task.findByIdAndUpdate(
+  app.post("/api/tasks/modify_users", RequireLogin, async (req, res) => {
+    const task = await Task.findByIdAndUpdate(
       req.body.task_id,
       { _users: req.body.users },
       { new: true }
-    );
-    await task.save();
+    ).populate("_users", "id firstname lastname imgURL");
     res.send(task);
   });
   app.post("/api/tasks/create_comment", RequireLogin, async (req, res) => {
@@ -54,5 +53,17 @@ module.exports = app => {
   app.post("/api/tasks/remove", RequireLogin, async (req, res) => {
     await Task.findByIdAndRemove(mongoose.Types.ObjectId(req.body.task_id));
     res.send(null);
+  });
+  app.post("/api/tasks/modify", RequireLogin, async (req, res) => {
+    const task = await Task.findByIdAndUpdate(
+      req.body.task_id,
+      {
+        name: req.body.name,
+        description: req.body.description,
+        type: req.body.type
+      },
+      { new: true }
+    ).populate("_users", "id firstname lastname imgURL");
+    res.send(task);
   });
 };

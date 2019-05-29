@@ -1,5 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Modal from "react-responsive-modal";
+import Users from "./Users";
+import Comments from "./Comments";
+import AddUsers from "./AddUsers";
+import EditTask from "./EditTask";
+import { DeleteTask } from "../../../actions";
 
 class TaskInfo extends Component {
   constructor(props) {
@@ -12,98 +18,38 @@ class TaskInfo extends Component {
   onCloseModal = () => {
     this.setState({ open: false });
   };
+  handleDelete() {
+    const { task } = this.props;
+    this.props.DeleteTask(task._id);
+  }
   render() {
     const { open } = this.state;
+    const { task } = this.props;
     return (
       <div>
-        <li onClick={this.onOpenModal}>Listen to new CodePen Radio episode</li>
+        <li onClick={this.onOpenModal}>{task.name}</li>
         <Modal open={open} onClose={this.onCloseModal} center>
           <div className="task-modal">
             <div className="card-body">
-              <h3 className="name">Job title </h3>
-              <p className="description">Lorem ipsum dolor sit amet</p>
-              <ul className="users">
-                <li>
-                  <img
-                    className="rounded-circle image"
-                    width="40"
-                    height="40"
-                    src="https://getuikit.com/docs/images/avatar.jpg"
-                  />
-                </li>
-                <li>
-                  <img
-                    className="rounded-circle image"
-                    width="40"
-                    height="40"
-                    src="https://getuikit.com/docs/images/avatar.jpg"
-                  />
-                </li>
-                <li>
-                  <img
-                    className="rounded-circle image"
-                    width="40"
-                    height="40"
-                    src="https://getuikit.com/docs/images/avatar.jpg"
-                  />
-                </li>
-              </ul>
+              <h3 className="name">{task.name}</h3>
+              <p className="description">{task.description}</p>
+              <Users users={task._users} />
             </div>
-            <div className="section">
-              <i className="far fa-comment-dots" />
-            </div>
-
-            <ul className="comments">
-              <li>
-                <img
-                  className="rounded-circle image"
-                  width="40"
-                  height="40"
-                  src="https://getuikit.com/docs/images/avatar.jpg"
-                />
-                <div className="comment">
-                  <div className="header">
-                    <h3 className="name">John Doe</h3>
-                    <span className="time">14.12.2018 13:05</span>
-                  </div>
-                  <div className="content">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <img
-                  className="rounded-circle image"
-                  width="40"
-                  height="40"
-                  src="https://getuikit.com/docs/images/avatar.jpg"
-                />
-                <div className="comment">
-                  <div className="header">
-                    <h3 className="name">John Doe</h3>
-                    <span className="time">14.12.2018 13:05</span>
-                  </div>
-                  <div className="content">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <div className="make-comment">
-              <label>Comment:</label>
-              <textarea className="form-control" rows="2" />
-              <button className="btn btn-primary">Submit</button>
-            </div>
+            <Comments task_id={task._id} />
             <div className="manage">
-              <button className="btn btn-danger">
+              <button
+                className="btn btn-danger"
+                onClick={() => this.handleDelete()}
+              >
                 <i className="far fa-trash-alt" />
               </button>
-              <button className="btn btn-primary">
-                <i className="far fa-edit" />
-              </button>
-              <button className="btn btn-primary">
-                <i className="fas fa-plus" />
-              </button>
+
+              <EditTask task={task} />
+              <AddUsers
+                group_id={this.props.group_id}
+                active_users={task._users}
+                task_id={task._id}
+              />
             </div>
           </div>
         </Modal>
@@ -112,4 +58,7 @@ class TaskInfo extends Component {
   }
 }
 
-export default TaskInfo;
+export default connect(
+  null,
+  { DeleteTask }
+)(TaskInfo);

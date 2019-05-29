@@ -8,7 +8,7 @@ const default_img =
   "https://www.thehindu.com/sci-tech/technology/internet/article17759222.ece/alternates/FREE_660/02th-egg-person";
 
 class MyGroups extends Component {
-  getgroups() {
+  renderGroups() {
     const { user } = this.props;
     return _.map(this.props.groups, group => {
       return (
@@ -37,7 +37,7 @@ class MyGroups extends Component {
       <div className=" tasks-mygroups col col-10 h-75">
         {" "}
         <div className="title">Select a group</div>
-        {this.getgroups()}
+        {this.renderGroups()}
       </div>
     );
   }

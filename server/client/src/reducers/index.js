@@ -5,6 +5,7 @@ import Selected_Emails from "./Selected_Emails";
 import Groups from "./Groups";
 import Chat from "./Chat";
 import Calendar from "./Calendar";
+import Tasks from "./Tasks";
 
 export default combineReducers({
   user: User,
@@ -12,5 +13,6 @@ export default combineReducers({
   selected_emails: Selected_Emails,
   groups: Groups,
   chat: Chat,
-  calendar: Calendar
+  calendar: Calendar,
+  tasks: Tasks
 });

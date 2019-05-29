@@ -253,3 +253,68 @@ export const ModifyEvent = (
     payload: request.data
   });
 };
+
+/* --------- tasks -------------- */
+
+export const FetchTask = group_id => async dispatch => {
+  const request = await axios.get("/api/tasks/fetch/" + group_id);
+  dispatch({
+    type: types.FETCH_TASKS,
+    payload: request.data
+  });
+};
+
+export const DeleteTask = task_id => async dispatch => {
+  const request = await axios.post("/api/tasks/remove", { task_id: task_id });
+  dispatch({
+    type: types.DELETE_TASK,
+    payload: task_id
+  });
+};
+
+export const ModifyUsersTask = (task_id, users_id) => async dispatch => {
+  const request = await axios.post("/api/tasks/modify_users", {
+    task_id: task_id,
+    users: users_id
+  });
+  dispatch({
+    type: types.MODIFY_TASK,
+    payload: request.data
+  });
+};
+
+export const ModifyTask = (
+  task_id,
+  name,
+  description,
+  type
+) => async dispatch => {
+  const request = await axios.post("/api/tasks/modify", {
+    task_id: task_id,
+    name: name,
+    description: description,
+    type: type
+  });
+  dispatch({
+    type: types.MODIFY_TASK,
+    payload: request.data
+  });
+};
+
+export const CreateTask = (
+  group_id,
+  name,
+  description,
+  type
+) => async dispatch => {
+  const request = await axios.post("/api/tasks/create_task", {
+    group_id: group_id,
+    name: name,
+    description: description,
+    type: type
+  });
+  dispatch({
+    type: types.ADD_TASK,
+    payload: request.data
+  });
+};

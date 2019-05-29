@@ -282,7 +282,7 @@
   opacity: 0.5;
   cursor: default !important; }
 
-.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span, .groups .modify .input_field span, .join-modal .input_field span, .add-event-modal .title span {
+.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span, .groups .modify .input_field span, .join-modal .input_field span, .add-event-modal .title span, .modify-task-modal .name span {
   pointer-events: none;
   position: absolute;
   top: 16px;
@@ -290,7 +290,7 @@
   transform-origin: 0 0;
   transition: all 0.2s ease; }
 
-.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input, .groups .modify .input_field input, .join-modal .input_field input, .add-event-modal .title input {
+.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input, .groups .modify .input_field input, .join-modal .input_field input, .add-event-modal .title input, .modify-task-modal .name input {
   border: none;
   -webkit-appearance: none;
   border-bottom: 2px solid #c8ccd4;
@@ -298,12 +298,12 @@
   padding: 12px 0px;
   transition: 0.2s;
   width: 100%; }
-  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span, .groups .modify .input_field input:not(:placeholder-shown) + span, .join-modal .input_field input:not(:placeholder-shown) + span, .add-event-modal .title input:not(:placeholder-shown) + span {
+  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span, .groups .modify .input_field input:not(:placeholder-shown) + span, .join-modal .input_field input:not(:placeholder-shown) + span, .add-event-modal .title input:not(:placeholder-shown) + span, .modify-task-modal .name input:not(:placeholder-shown) + span {
     color: #9098a9;
     transform: translateY(-26px); }
-  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus, .groups .modify .input_field input:focus, .join-modal .input_field input:focus, .add-event-modal .title input:focus {
+  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus, .groups .modify .input_field input:focus, .join-modal .input_field input:focus, .add-event-modal .title input:focus, .modify-task-modal .name input:focus {
     border-bottom: 2px solid #0077ff; }
-    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span, .groups .modify .input_field input:focus + span, .join-modal .input_field input:focus + span, .add-event-modal .title input:focus + span {
+    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span, .groups .modify .input_field input:focus + span, .join-modal .input_field input:focus + span, .add-event-modal .title input:focus + span, .modify-task-modal .name input:focus + span {
       color: #0077ff;
       transform: translateY(-26px); }
 
@@ -964,6 +964,71 @@
     .task-modal .manage button {
       margin-left: 5px;
       cursor: pointer; }
+
+.add-users-modal {
+  width: 250px;
+  height: 500px;
+  overflow: auto;
+  text-align: center; }
+  .add-users-modal .header {
+    margin-top: 5px;
+    font-weight: 700;
+    font-size: 17px; }
+  .add-users-modal ul {
+    margin-top: 10px; }
+    .add-users-modal ul li {
+      margin-top: 10px; }
+      .add-users-modal ul li .name {
+        margin-left: 10px;
+        font-weight: 600; }
+      .add-users-modal ul li button {
+        cursor: pointer;
+        padding: 4px 7px;
+        margin-left: 10px; }
+  .add-users-modal button {
+    cursor: pointer; }
+
+.modify-task-modal {
+  width: 250px;
+  height: 350px;
+  overflow: auto; }
+  .modify-task-modal .header {
+    margin: 5px;
+    font-weight: 700;
+    font-size: 17px; }
+  .modify-task-modal .name {
+    margin: 20px;
+    width: 190px;
+    text-align: left;
+    position: relative;
+    color: #9098a9;
+    margin-bottom: 10px; }
+  .modify-task-modal .description {
+    margin: 20px;
+    border: none;
+    -webkit-appearance: none;
+    border-bottom: 2px solid #c8ccd4;
+    outline: none;
+    padding: 12px 0px;
+    transition: 0.2s;
+    width: 190px;
+    height: 100px; }
+    .modify-task-modal .description:not(:placeholder-shown) + span {
+      color: #9098a9;
+      transform: translateY(-26px); }
+    .modify-task-modal .description:focus {
+      border-bottom: 2px solid #0077ff; }
+      .modify-task-modal .description:focus + span {
+        color: #0077ff;
+        transform: translateY(-26px); }
+  .modify-task-modal .type {
+    margin-left: 20px;
+    width: 100px; }
+  .modify-task-modal .btn {
+    display: block;
+    margin-top: 15px;
+    cursor: pointer;
+    margin: auto; }
 
 * {
   margin: 0;
