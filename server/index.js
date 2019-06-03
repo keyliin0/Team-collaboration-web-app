@@ -69,6 +69,8 @@ const server = app.listen(PORT);
 const io = socket(server);
 
 //io.adapter(redis({ host: "localhost", port: 6379 }));
+io.set("transports", ["xhr-polling"]);
+io.set("polling duration", 10);
 io.on("connection", socket => {
   /* grab the cookie for the user informations */
   let cookieString = socket.request.headers.cookie;
