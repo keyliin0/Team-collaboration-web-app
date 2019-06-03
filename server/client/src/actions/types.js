@@ -30,3 +30,12 @@ export const FETCH_TASKS = "FETCH_TASKS";
 export const DELETE_TASK = "DELETE_TASK";
 export const MODIFY_TASK = "MODIFY_TASK";
 export const ADD_TASK = "ADD_TASK";
+// files action types
+export const FETCH_FILES = "FETCH_FILES";
+export const LOADING_FILES = "LOADING_FILES";
+export const SELECT_FILE = "SELECT_FILE";
+export const CREATE_FOLDER = "CREATE_FOLDER";
+export const RENAME_FILE = "RENAME_FILE";
+export const DELETE_FILE = "DELETE_FILE";
+export const UPLOAD_PROGRESS = "UPLOAD_PROGRESS";
+export const UPLOAD_DONE = "UPLOAD_DONE";

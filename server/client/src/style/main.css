@@ -227,7 +227,7 @@
             margin-left: 10px; }
 
 ::-webkit-scrollbar {
-  width: 10px; }
+  width: 8px; }
 
 /* Track */
 ::-webkit-scrollbar-track {
@@ -282,7 +282,7 @@
   opacity: 0.5;
   cursor: default !important; }
 
-.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span, .groups .modify .input_field span, .join-modal .input_field span, .add-event-modal .title span, .modify-task-modal .name span {
+.mails .SendEmail .content .to span, .mails .SendEmail .content .subject span, .groups .modify .input_field span, .join-modal .input_field span, .add-event-modal .title span, .modify-task-modal .name span, .create-folder-modal .name span, .rename-modal .name span {
   pointer-events: none;
   position: absolute;
   top: 16px;
@@ -290,7 +290,7 @@
   transform-origin: 0 0;
   transition: all 0.2s ease; }
 
-.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input, .groups .modify .input_field input, .join-modal .input_field input, .add-event-modal .title input, .modify-task-modal .name input {
+.mails .SendEmail .content .to input, .mails .SendEmail .content .subject input, .groups .modify .input_field input, .join-modal .input_field input, .add-event-modal .title input, .modify-task-modal .name input, .create-folder-modal .name input, .rename-modal .name input {
   border: none;
   -webkit-appearance: none;
   border-bottom: 2px solid #c8ccd4;
@@ -298,12 +298,12 @@
   padding: 12px 0px;
   transition: 0.2s;
   width: 100%; }
-  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span, .groups .modify .input_field input:not(:placeholder-shown) + span, .join-modal .input_field input:not(:placeholder-shown) + span, .add-event-modal .title input:not(:placeholder-shown) + span, .modify-task-modal .name input:not(:placeholder-shown) + span {
+  .mails .SendEmail .content .to input:not(:placeholder-shown) + span, .mails .SendEmail .content .subject input:not(:placeholder-shown) + span, .groups .modify .input_field input:not(:placeholder-shown) + span, .join-modal .input_field input:not(:placeholder-shown) + span, .add-event-modal .title input:not(:placeholder-shown) + span, .modify-task-modal .name input:not(:placeholder-shown) + span, .create-folder-modal .name input:not(:placeholder-shown) + span, .rename-modal .name input:not(:placeholder-shown) + span {
     color: #9098a9;
     transform: translateY(-26px); }
-  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus, .groups .modify .input_field input:focus, .join-modal .input_field input:focus, .add-event-modal .title input:focus, .modify-task-modal .name input:focus {
+  .mails .SendEmail .content .to input:focus, .mails .SendEmail .content .subject input:focus, .groups .modify .input_field input:focus, .join-modal .input_field input:focus, .add-event-modal .title input:focus, .modify-task-modal .name input:focus, .create-folder-modal .name input:focus, .rename-modal .name input:focus {
     border-bottom: 2px solid #0077ff; }
-    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span, .groups .modify .input_field input:focus + span, .join-modal .input_field input:focus + span, .add-event-modal .title input:focus + span, .modify-task-modal .name input:focus + span {
+    .mails .SendEmail .content .to input:focus + span, .mails .SendEmail .content .subject input:focus + span, .groups .modify .input_field input:focus + span, .join-modal .input_field input:focus + span, .add-event-modal .title input:focus + span, .modify-task-modal .name input:focus + span, .create-folder-modal .name input:focus + span, .rename-modal .name input:focus + span {
       color: #0077ff;
       transform: translateY(-26px); }
 
@@ -1029,6 +1029,88 @@
     margin-top: 15px;
     cursor: pointer;
     margin: auto; }
+
+.filebrowser-container {
+  color: #424242;
+  margin: auto;
+  background-color: white;
+  margin-top: 10%; }
+  .filebrowser-container .row {
+    margin-left: 0px; }
+  .filebrowser-container .toolbar {
+    padding: 10px;
+    width: 100%;
+    border-bottom: 1px solid #f5f5f5; }
+    .filebrowser-container .toolbar .icon {
+      display: inline-block;
+      margin-left: 2%;
+      font-size: 20px;
+      cursor: pointer;
+      transition: 0.4s; }
+      .filebrowser-container .toolbar .icon:hover {
+        opacity: 0.5; }
+  .filebrowser-container .header {
+    font-weight: 700;
+    border-bottom: 1px solid #f5f5f5; }
+  .filebrowser-container .list {
+    height: 387px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-bottom: 1px solid #f5f5f5; }
+    .filebrowser-container .list .item {
+      cursor: default; }
+      .filebrowser-container .list .item:hover {
+        background-color: #f5f5f5; }
+      .filebrowser-container .list .item .title .icon {
+        font-size: 24px;
+        display: inline-block;
+        margin-right: 14px; }
+      .filebrowser-container .list .item .title .name {
+        margin-top: 7px;
+        vertical-align: top;
+        font-size: 15px;
+        font-weight: 600;
+        display: inline-block; }
+      .filebrowser-container .list .item .size {
+        margin-top: 7px;
+        vertical-align: top; }
+      .filebrowser-container .list .item .modified {
+        margin-top: 7px;
+        vertical-align: top; }
+    .filebrowser-container .list .selected {
+      background-color: #2196f3;
+      color: white; }
+      .filebrowser-container .list .selected .icon {
+        padding: 0 5px;
+        border-radius: 100%;
+        background-color: white;
+        color: #424242; }
+  .filebrowser-container .location {
+    padding-bottom: 5px;
+    font-size: 16px;
+    font-weight: 600; }
+
+.create-folder-modal {
+  padding: 10px; }
+  .create-folder-modal .name {
+    width: 190px;
+    text-align: left;
+    position: relative;
+    color: #9098a9;
+    margin-bottom: 10px; }
+  .create-folder-modal button {
+    cursor: pointer; }
+
+.rename-modal {
+  padding: 10px; }
+  .rename-modal .name {
+    width: 190px;
+    text-align: left;
+    position: relative;
+    color: #9098a9;
+    margin-bottom: 10px; }
+  .rename-modal button {
+    cursor: pointer; }
 
 * {
   margin: 0;

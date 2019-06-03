@@ -318,3 +318,67 @@ export const CreateTask = (
     payload: request.data
   });
 };
+
+/*---------------- FILES ------------ */
+
+export const FetchFiles = folder_id => async dispatch => {
+  dispatch({
+    type: types.LOADING_FILES
+  });
+  const request = await axios.get("/api/files/get/" + folder_id);
+  dispatch({
+    type: types.FETCH_FILES,
+    payload: { objects: request.data, current_folder_id: folder_id }
+  });
+};
+
+export const SelectFile = file => async dispatch => {
+  dispatch({
+    type: types.SELECT_FILE,
+    payload: file
+  });
+};
+
+export const CreateFolder = (folder_id, name) => async dispatch => {
+  const request = await axios.post("/api/files/create_folder", {
+    parent_id: folder_id,
+    name: name
+  });
+  dispatch({
+    type: types.CREATE_FOLDER,
+    payload: request.data
+  });
+};
+
+export const RenameFile = (file_id, name) => async dispatch => {
+  const request = await axios.post("/api/files/rename", {
+    object_id: file_id,
+    name: name
+  });
+  dispatch({
+    type: types.RENAME_FILE,
+    payload: request.data
+  });
+};
+
+export const DeleteFile = file_id => dispatch => {
+  axios.post("/api/files/delete", { object_id: file_id });
+  dispatch({
+    type: types.DELETE_FILE,
+    payload: file_id
+  });
+};
+
+export const UploadFile = (folder_id, formdata) => async dispatch => {
+  const request = axios.post("/api/files/upload", formdata, {
+    onUploadProgress: progressEvent =>
+      dispatch({
+        type: types.UPLOAD_PROGRESS,
+        payload: parseInt((progressEvent.loaded * 100) / progressEvent.total)
+      })
+  });
+  dispatch({
+    type: types.UPLOAD_DONE,
+    payload: request.data
+  });
+};

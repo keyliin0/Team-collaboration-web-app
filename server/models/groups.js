@@ -15,7 +15,8 @@ const GroupSchema = new Schema(
     last_chat_message: {
       message: { type: String, default: "Be the first to write a message!" },
       timestamp: { type: Number, default: Date.now() }
-    }
+    },
+    storage_folder_id: { type: String }
   },
   { usePushEach: true }
 );

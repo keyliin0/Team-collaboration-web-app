@@ -48,7 +48,7 @@ class TaskBoard extends Component {
             Done
           </button>
         </div>
-        <div className="col col-12">
+        <div className="col-12">
           {this.state.show_todo ? (
             <TaskList group_id={this.props.match.params.id} type={"To Do"} />
           ) : (

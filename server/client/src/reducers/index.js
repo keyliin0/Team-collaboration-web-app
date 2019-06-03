@@ -6,6 +6,7 @@ import Groups from "./Groups";
 import Chat from "./Chat";
 import Calendar from "./Calendar";
 import Tasks from "./Tasks";
+import Files from "./Files";
 
 export default combineReducers({
   user: User,
@@ -14,5 +15,6 @@ export default combineReducers({
   groups: Groups,
   chat: Chat,
   calendar: Calendar,
-  tasks: Tasks
+  tasks: Tasks,
+  files: Files
 });

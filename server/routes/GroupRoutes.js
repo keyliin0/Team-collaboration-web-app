@@ -3,7 +3,12 @@ const RequireLogin = require("../middlewares/RequireLogin");
 const Group = mongoose.model("groups");
 const User = mongoose.model("users");
 const ObjectId = require("mongoose").Types.ObjectId;
+const keys = require("../config/keys");
+const axios = require("axios");
 const _ = require("lodash");
+
+const kloud_URL =
+  "https://api.kloudless.com/v1/accounts/" + keys.kloudlessID + "/storage";
 
 module.exports = app => {
   // fetching own groups
@@ -20,6 +25,16 @@ module.exports = app => {
   });
   // creating a group
   app.post("/api/group/create", RequireLogin, async (req, res) => {
+    // create the group folder
+    const request = await axios.post(
+      kloud_URL + "/folders/",
+      {
+        parent_id: "root",
+        name: req.body.name
+      },
+      { headers: { Authorization: "ApiKey " + keys.kloudlessApiKey } }
+    );
+    const folder_id = request.data.id;
     const default_img_url =
       "https://www.thehindu.com/sci-tech/technology/internet/article17759222.ece/alternates/FREE_660/02th-egg-person";
     const group = new Group({
@@ -30,7 +45,8 @@ module.exports = app => {
       facebook: req.body.facebook,
       email: req.body.email,
       _creator: [req.user.id],
-      _users: [req.user.id]
+      _users: [req.user.id],
+      storage_folder_id: folder_id
     });
     req.user._groups.push(mongoose.Types.ObjectId(group.id));
     await req.user.save();
@@ -47,6 +63,7 @@ module.exports = app => {
       facebook: req.body.facebook,
       email: req.body.email
     });
+    storage;
     res.send(null);
   });
   // remove user from a group

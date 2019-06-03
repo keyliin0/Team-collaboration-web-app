@@ -53,6 +53,7 @@ require("./routes/ChatRoutes")(app);
 require("./routes/GroupRoutes")(app);
 require("./routes/CalendarRoutes")(app);
 require("./routes/TaskRoutes")(app);
+require("./routes/FilesRoutes")(app);
 
 // config
 if (process.env.NODE_ENV === "production") {

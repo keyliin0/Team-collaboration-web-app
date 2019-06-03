@@ -13,10 +13,10 @@ const Loader = () => (
     primaryColor="#f3f3f3"
     secondaryColor="#ecebeb"
   >
-    <rect x="25" y="15" rx="5" ry="5" width="220" height="10" />
-    <rect x="25" y="45" rx="5" ry="5" width="220" height="10" />
-    <rect x="25" y="75" rx="5" ry="5" width="220" height="10" />
-    <rect x="25" y="105" rx="5" ry="5" width="220" height="10" />
+    <rect x="25" y="15" rx="5" ry="5" width="350" height="10" />
+    <rect x="25" y="45" rx="5" ry="5" width="350" height="10" />
+    <rect x="25" y="75" rx="5" ry="5" width="350" height="10" />
+    <rect x="25" y="105" rx="5" ry="5" width="350" height="10" />
   </ContentLoader>
 );
 
