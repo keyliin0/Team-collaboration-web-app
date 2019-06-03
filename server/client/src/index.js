@@ -14,7 +14,7 @@ const store = createStore(
   applyMiddleware(
     reduxThunk,
     createMySocketMiddleware(
-      window.location.origin + ":" + process.env.REACT_APP_PORT
+      window.location.origin + ":" + window.location.port
     )
   )
 );
