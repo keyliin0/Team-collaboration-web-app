@@ -13,7 +13,7 @@ const store = createStore(
   {},
   applyMiddleware(
     reduxThunk,
-    createMySocketMiddleware("http://localhost:" + (process.env.PORT || "5000"))
+    createMySocketMiddleware(location.origin + (process.env.PORT || "5000"))
   )
 );
 
