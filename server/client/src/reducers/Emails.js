@@ -32,11 +32,13 @@ export default function(state = INITIAL_STATE, action) {
       previous.pop();
       return {
         emails: _.mapKeys(action.payload.data.messages, "id"),
-        previous: previous,
         nextpage: action.payload.data.nextpage,
         label: action.payload.label,
         query: action.payload.query,
-        loading: false
+        loading: false,
+        previous: state.previous.filter(
+          (_, i) => i !== state.previous.length - 1
+        ) // pop the last element from history
       };
     case CLEAR_EMAILS:
       return INITIAL_STATE;

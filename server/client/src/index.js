@@ -11,7 +11,7 @@ import { createMySocketMiddleware } from "./middlewares/socketIO";
 const store = createStore(
   reducers,
   {},
-  applyMiddleware(reduxThunk, createMySocketMiddleware("/"))
+  applyMiddleware(reduxThunk, createMySocketMiddleware("http://localhost:5000"))
 );
 
 ReactDOM.render(

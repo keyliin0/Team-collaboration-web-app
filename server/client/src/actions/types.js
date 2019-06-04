@@ -39,3 +39,4 @@ export const RENAME_FILE = "RENAME_FILE";
 export const DELETE_FILE = "DELETE_FILE";
 export const UPLOAD_PROGRESS = "UPLOAD_PROGRESS";
 export const UPLOAD_DONE = "UPLOAD_DONE";
+export const PREVIOUS_FOLDER = "PREVIOUS_FOLDER";

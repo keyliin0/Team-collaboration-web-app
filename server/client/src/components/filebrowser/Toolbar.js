@@ -3,16 +3,18 @@ import Create_Folder from "./Create_Folder";
 import Rename from "./Rename";
 import Delete from "./Delete";
 import Upload from "./Upload";
+import Download from "./Download";
+import Previous_Folder from "./Previous_Folder";
 
 export default class FileBrowser extends Component {
   render() {
     return (
       <div className="toolbar">
-        <i className="fas fa-angle-left icon" />
+        <Previous_Folder />
         <Create_Folder />
         <Upload />
         <Rename />
-        <i className="fas fa-download icon" />
+        <Download />
         <Delete />
       </div>
     );

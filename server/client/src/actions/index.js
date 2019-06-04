@@ -1,4 +1,5 @@
 import axios from "axios";
+import fileDownload from "js-file-download";
 import * as types from "./types";
 
 // user actions
@@ -370,7 +371,7 @@ export const DeleteFile = file_id => dispatch => {
 };
 
 export const UploadFile = (folder_id, formdata) => async dispatch => {
-  const request = axios.post("/api/files/upload", formdata, {
+  const request = await axios.post("/api/files/upload/" + folder_id, formdata, {
     onUploadProgress: progressEvent =>
       dispatch({
         type: types.UPLOAD_PROGRESS,
@@ -380,5 +381,26 @@ export const UploadFile = (folder_id, formdata) => async dispatch => {
   dispatch({
     type: types.UPLOAD_DONE,
     payload: request.data
+  });
+};
+
+export const DownloadFile = (file_id, filename) => dispatch => {
+  axios
+    .request({
+      url: "/api/files/download/" + file_id,
+      method: "GET",
+      responseType: "blob"
+    })
+    .then(response => fileDownload(response.data, filename));
+};
+
+export const PreviousFolder = folder_id => async dispatch => {
+  dispatch({
+    type: types.LOADING_FILES
+  });
+  const request = await axios.get("/api/files/get/" + folder_id);
+  dispatch({
+    type: types.PREVIOUS_FOLDER,
+    payload: { objects: request.data, current_folder_id: folder_id }
   });
 };
