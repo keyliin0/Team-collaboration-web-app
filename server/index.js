@@ -87,32 +87,23 @@ io.on("connection", socket => {
     rabbitConn.queue("", function(q) {
       //Bind to chatExchange w/ "#" or "" binding key to listen to all messages.
       q.bind("chatExchange", room + "/chat");
-      q.bind("NotificationExchange", room + "/notification");
       //Subscribe When a message comes, send it back to browser
       q.subscribe(function(message) {
-        switch (message.type) {
-          case "CHAT":
-            socket.emit("NewMessage", message.data);
-            return;
-          case "NOTIFICATION":
-            if (message.data[user._id])
-              socket.emit("NewNotification", message.data[user._id]);
-          default:
-            return;
-        }
+        socket.emit("NewMessage", message.data);
       });
     });
     // notification queue
-    /*rabbitConn.queue("", {}, function(q) {
+    rabbitConn.queue("", {}, function(q) {
       // bind to notification exchange
       q.bind("NotificationExchange", room + "/notification");
       // listen to notification
       q.subscribe(function(data) {
         console.log(data);
         // io.in(room).emit("NewNotification", data);
-        socket.emit("NewNotification", data);
+        if (message.data[user._id])
+          socket.emit("NewNotification", message.data[user._id]);
       });
-    });*/
+    });
   });
   socket.on("CreateChatMessage", async (room, message) => {
     // room = group_id
