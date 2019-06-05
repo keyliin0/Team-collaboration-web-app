@@ -30,11 +30,13 @@
     "react-responsive-modal": "^3.5.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
+    "react-timeago": "^4.4.0",
     "redux": "^4.0.0",
     "redux-socket.io": "^1.4.0",
     "redux-thunk": "^2.3.0",
     "redux-ws": "^0.2.0",
-    "socket.io-client": "^2.2.0"
+    "socket.io-client": "^2.2.0",
+    "timeago-react": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

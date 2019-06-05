@@ -10,7 +10,7 @@ import TasksGroups from "./tasks/MyGroups";
 import TaskBoard from "./tasks/TaskBoard";
 import FileBrowserGroups from "./filebrowser/MyGroups";
 import FileBrowser from "./filebrowser/FileBrowser";
-import Utils from "./Utils";
+import Utils from "./Utils/Utils";
 
 export default class Dashboard extends Component {
   render() {

@@ -2,14 +2,13 @@
   height: 70px;
   background-color: #ffffff;
   box-shadow: 0px 0.1px;
-  line-height: 60px;
   width: 100%;
   & .right {
     & ul li {
       & i {
         color: #bcbccb;
       }
-      display: inline;
+      display: inline-block;
       margin: 10px;
       img {
         width: 40px;
@@ -24,6 +23,93 @@
         border: none;
         border-left: 1px solid hsla(200, 10%, 50%, 100);
         border-color: #ebebf2;
+      }
+    }
+  }
+  & .notifications {
+    position: relative;
+    & .icon {
+      cursor: pointer;
+    }
+    & .notification-container {
+      z-index: 99;
+      position: absolute;
+      top: 60px;
+      left: -250px;
+      background-color: #ffffff;
+      border: 1px solid #f1f1f3;
+      border-radius: 3px;
+      & .wrapper {
+        width: 350px;
+        height: 430px;
+        position: relative;
+      }
+      &:before {
+        position: absolute;
+        top: -20px;
+        left: 245px;
+        content: "";
+        display: block;
+        border: 10px solid transparent;
+        border-top-color: #ffffff;
+        transform: rotate(180deg);
+      }
+      & .header {
+        margin-left: 15px;
+        font-weight: 600;
+        font-size: 15px;
+        border-bottom: 1px solid #f5f5f5;
+        height: 30px;
+      }
+      & .list {
+        max-height: 400px;
+        overflow: auto;
+        display: block;
+        & .seen {
+          background: #f1f1f1;
+        }
+        & .item {
+          margin: 0;
+          padding-left: 10px;
+          cursor: pointer;
+          &:hover {
+            background: #f1f1f1;
+            opacity: 0.9;
+          }
+          border-bottom: 1px solid #f5f5f5;
+          display: block;
+          & .icon {
+            margin-bottom: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            font-size: 25px;
+            & i {
+              padding-bottom: 10px;
+              color: #808495;
+            }
+          }
+          & .info {
+            margin-left: 10px;
+            display: inline-block;
+            height: 25px;
+            & .title {
+              color: #4d565c;
+              font-weight: 600;
+            }
+            & .date {
+              color: #808495;
+            }
+          }
+        }
+      }
+      & .loadmore {
+        text-align: center;
+        padding: 10px 0;
+        background-color: #ffffff;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        color: #3b86ff;
+        cursor: pointer;
       }
     }
   }

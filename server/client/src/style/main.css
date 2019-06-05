@@ -50,10 +50,9 @@
   height: 70px;
   background-color: #ffffff;
   box-shadow: 0px 0.1px;
-  line-height: 60px;
   width: 100%; }
   .Utils .right ul li {
-    display: inline;
+    display: inline-block;
     margin: 10px; }
     .Utils .right ul li i {
       color: #bcbccb; }
@@ -68,6 +67,77 @@
       border: none;
       border-left: 1px solid #73848c;
       border-color: #ebebf2; }
+  .Utils .notifications {
+    position: relative; }
+    .Utils .notifications .icon {
+      cursor: pointer; }
+    .Utils .notifications .notification-container {
+      z-index: 99;
+      position: absolute;
+      top: 60px;
+      left: -250px;
+      background-color: #ffffff;
+      border: 1px solid #f1f1f3;
+      border-radius: 3px; }
+      .Utils .notifications .notification-container .wrapper {
+        width: 350px;
+        height: 430px;
+        position: relative; }
+      .Utils .notifications .notification-container:before {
+        position: absolute;
+        top: -20px;
+        left: 245px;
+        content: "";
+        display: block;
+        border: 10px solid transparent;
+        border-top-color: #ffffff;
+        transform: rotate(180deg); }
+      .Utils .notifications .notification-container .header {
+        margin-left: 15px;
+        font-weight: 600;
+        font-size: 15px;
+        border-bottom: 1px solid #f5f5f5;
+        height: 30px; }
+      .Utils .notifications .notification-container .list {
+        max-height: 400px;
+        overflow: auto;
+        display: block; }
+        .Utils .notifications .notification-container .list .seen {
+          background: #f1f1f1; }
+        .Utils .notifications .notification-container .list .item {
+          margin: 0;
+          padding-left: 10px;
+          cursor: pointer;
+          border-bottom: 1px solid #f5f5f5;
+          display: block; }
+          .Utils .notifications .notification-container .list .item:hover {
+            background: #f1f1f1;
+            opacity: 0.9; }
+          .Utils .notifications .notification-container .list .item .icon {
+            margin-bottom: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            font-size: 25px; }
+            .Utils .notifications .notification-container .list .item .icon i {
+              padding-bottom: 10px;
+              color: #808495; }
+          .Utils .notifications .notification-container .list .item .info {
+            margin-left: 10px;
+            display: inline-block;
+            height: 25px; }
+            .Utils .notifications .notification-container .list .item .info .title {
+              color: #4d565c;
+              font-weight: 600; }
+            .Utils .notifications .notification-container .list .item .info .date {
+              color: #808495; }
+      .Utils .notifications .notification-container .loadmore {
+        text-align: center;
+        padding: 10px 0;
+        background-color: #ffffff;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        color: #3b86ff;
+        cursor: pointer; }
 
 .mails {
   background-color: white;

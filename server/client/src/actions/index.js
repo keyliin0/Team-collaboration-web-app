@@ -404,3 +404,25 @@ export const PreviousFolder = folder_id => async dispatch => {
     payload: { objects: request.data, current_folder_id: folder_id }
   });
 };
+
+// notifications
+
+export const FetchNotifications = (skip, limit) => async dispatch => {
+  const request = await axios.get(
+    "/api/notifications/get/" + skip + "/" + limit
+  );
+  dispatch({
+    type: types.FETCH_NOTIFICATIONS,
+    payload: request.data
+  });
+};
+
+export const MarkNotificationSeen = notification_id => async dispatch => {
+  const request = await axios.post("/api/notifications/mark_read/", {
+    notification_id: notification_id
+  });
+  dispatch({
+    type: types.MARK_NOTIFICATION,
+    payload: request.data
+  });
+};

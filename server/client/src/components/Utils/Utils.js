@@ -1,4 +1,5 @@
 import React from "react";
+import Notifications from "./Notifications";
 
 const Utils = () => {
   return (
@@ -11,9 +12,7 @@ const Utils = () => {
           <li>
             <i className="fas fa-cog" />
           </li>
-          <li>
-            <i className="fas fa-bell" />
-          </li>
+          <Notifications />
           <li>
             <hr />
           </li>

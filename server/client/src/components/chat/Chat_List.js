@@ -7,6 +7,7 @@ import {
   FetchChatMessages
 } from "../../actions";
 import _ from "lodash";
+import TimeAgo from "timeago-react";
 
 class Chat_List extends Component {
   componentWillMount() {
@@ -20,20 +21,6 @@ class Chat_List extends Component {
   HandleClick(group_id, name, imgURL) {
     this.props.SelectChatConversation(group_id, name, imgURL);
     this.props.FetchChatMessages(group_id, 0, 15);
-  }
-  ShowDate(date) {
-    var now = Date.now();
-    const d = new Date(now - date);
-    if (now - date < 1000) return "Now";
-    if (now - date < 60 * 1000) return d.getSeconds() + " Sec. ago";
-    else if (now - date < 60 * 60 * 1000) return d.getMinutes() + " Min. ago";
-    else if (now - date < 60 * 60 * 24 * 1000)
-      return d.getHours() + " Hrs. ago";
-    else if (now - date < 60 * 60 * 24 * 30 * 1000)
-      return d.getDay() + " Days ago.";
-    else if (now - date < 60 * 60 * 24 * 30 * 12 * 1000)
-      return d.getMonth() + " Mon. ago";
-    else return d.getFullYear() + " Years ago";
   }
   renderGroups() {
     // sort groups by recent activity
@@ -73,7 +60,7 @@ class Chat_List extends Component {
             </div>
           </div>
           <div className="last_message_date">
-            {this.ShowDate(group.last_chat_message.timestamp)}
+            <TimeAgo datetime={group.last_chat_message.timestamp} />
           </div>
         </li>
       );
