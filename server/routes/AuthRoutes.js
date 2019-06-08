@@ -41,7 +41,7 @@ module.exports = app => {
   });
   app.get("/auth/demo", async (req, res) => {
     const user = await User.findById(ObjectId(keys.DemoAccountId));
-    req.login(user, err => console.log(err));
+    await req.login(user, err => console.log(err));
     res.redirect("/");
   });
   app.get("/api/logout", (req, res) => {
