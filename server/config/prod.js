@@ -6,5 +6,6 @@ module.exports = {
   redirectDomain: process.env.redirectDomain,
   amqpURL: process.env.amqpURL,
   kloudlessApiKey: process.env.kloudlessApiKey,
-  kloudlessID: process.env.kloudlessID
+  kloudlessID: process.env.kloudlessID,
+  DemoAccountId: process.env.DemoAccountId
 };
