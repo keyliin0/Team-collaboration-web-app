@@ -34,7 +34,7 @@ export const createMySocketMiddleware = url => {
         case "SEND_WEBSOCKET_MESSAGE":
           socket.send(action.payload);
           return;
-        case "JOIN_CHAT_GROUP":
+        case "JOIN_SOCKET_GROUP":
           socket.emit("join", action.payload);
           return;
         case "SEND_CHAT_MESSAGE":

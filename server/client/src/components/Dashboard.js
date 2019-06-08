@@ -11,8 +11,19 @@ import TaskBoard from "./tasks/TaskBoard";
 import FileBrowserGroups from "./filebrowser/MyGroups";
 import FileBrowser from "./filebrowser/FileBrowser";
 import Utils from "./Utils/Utils";
+import { FetchGroups, JoinSocketRoom } from "../actions";
+import { connect } from "react-redux";
+import _ from "lodash";
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
+  componentWillMount() {
+    this.props.FetchGroups().then(() => {
+      const { groups } = this.props;
+      _.map(groups, group => {
+        this.props.JoinSocketRoom(group._id); // join group room to listen for notifications and chat messages
+      });
+    });
+  }
   render() {
     return (
       <BrowserRouter>
@@ -44,3 +55,12 @@ export default class Dashboard extends Component {
     );
   }
 }
+
+function mapStateToProps({ groups }) {
+  return { groups: groups };
+}
+
+export default connect(
+  mapStateToProps,
+  { JoinSocketRoom, FetchGroups }
+)(Dashboard);

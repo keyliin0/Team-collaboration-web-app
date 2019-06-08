@@ -61,7 +61,6 @@ class Days extends Component {
     return res;
   }
   render() {
-    console.log(this.props.calendar);
     return (
       <div className="days">
         <div className="day-name">Mon</div>

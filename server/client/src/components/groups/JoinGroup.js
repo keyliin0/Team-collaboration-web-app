@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-responsive-modal";
 import axios from "axios";
-import { FetchGroups } from "../../actions";
+import { FetchGroups, JoinSocketRoom } from "../../actions";
 
 class JoinGroup extends Component {
   constructor(props) {
@@ -39,8 +39,9 @@ class JoinGroup extends Component {
     const request = await axios.post("/api/group/join", {
       code: this.state.code
     });
-    if (request.data === true) {
+    if (request.data) {
       await this.props.FetchGroups();
+      this.props.JoinSocketRoom(request.data._id); // join group socket room
       this.setState({ open: false });
     } else this.setState({ error: true });
     this.setState({ loading: false });
@@ -90,5 +91,5 @@ function mapStateToProps({ user }) {
 
 export default connect(
   mapStateToProps,
-  { FetchGroups }
+  { FetchGroups, JoinSocketRoom }
 )(JoinGroup);

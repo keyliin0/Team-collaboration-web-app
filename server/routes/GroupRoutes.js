@@ -103,25 +103,25 @@ module.exports = app => {
     const group_id = req.body.code.split("/")[0];
     // check if the user is already in the group
     if (req.user._groups.find(user_group_id => user_group_id == group_id)) {
-      res.send(true);
+      res.send(null);
       return;
     }
     if (!ObjectId.isValid(group_id)) {
       // check if the id is not a valid mongodb id
-      res.send(false);
+      res.send(null);
       return;
     }
     // _______________
     const group = await Group.findById(group_id);
     if (!group || group.invitation_code !== req.body.code) {
-      res.send(false);
+      res.send(null);
       return;
     }
     group._users.push(req.user.id);
     await group.save();
     req.user._groups.push(group_id);
     await req.user.save();
-    res.send(true);
+    res.send(group);
   });
   // generate an invitation code for users
   app.post("/api/group/invite", RequireLogin, async (req, res) => {

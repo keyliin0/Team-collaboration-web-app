@@ -18,7 +18,6 @@ export default function(state = INITIAL_STATE, action) {
         message: action.payload.message,
         timestamp: action.payload.timestamp
       };*/
-      console.log(state);
       return {
         ...state,
         [action.payload.group_id]: {

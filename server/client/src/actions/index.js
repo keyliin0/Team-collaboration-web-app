@@ -141,13 +141,18 @@ export const CreateGroup = (
   facebook,
   email
 ) => async dispatch => {
-  await axios.post("/api/group/create", {
+  const request = await axios.post("/api/group/create", {
     name: name,
     imgurl: imgurl,
     instagram: instagram,
     twitter: twitter,
     facebook: facebook,
     email: email
+  });
+  // join group socket room
+  dispatch({
+    type: "JOIN_SOCKET_GROUP",
+    payload: request.data._id
   });
 };
 
@@ -156,13 +161,6 @@ export const CreateGroup = (
 export const SelectChatConversation = group_id => dispatch => {
   dispatch({
     type: types.CHAT_SELECT_CONVERSATION,
-    payload: group_id
-  });
-};
-
-export const JoinChatGroup = group_id => dispatch => {
-  dispatch({
-    type: "JOIN_CHAT_GROUP",
     payload: group_id
   });
 };
@@ -424,5 +422,14 @@ export const MarkNotificationSeen = notification_id => async dispatch => {
   dispatch({
     type: types.MARK_NOTIFICATION,
     payload: request.data
+  });
+};
+
+/////////////////
+
+export const JoinSocketRoom = group_id => dispatch => {
+  dispatch({
+    type: "JOIN_SOCKET_GROUP",
+    payload: group_id
   });
 };

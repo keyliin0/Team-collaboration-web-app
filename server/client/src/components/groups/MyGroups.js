@@ -30,7 +30,6 @@ class MyGroups extends Component {
     this.props.FetchGroups();
   }
   render() {
-    console.log(this.props.groups);
     if (!this.props.groups) return <div className="loader" />;
     if (_.isEmpty(this.props.groups))
       return <div className="empty_list">You are not in a group yet.</div>;

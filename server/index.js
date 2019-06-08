@@ -102,17 +102,6 @@ io.on("connection", socket => {
         }
       });
     });
-    // notification queue
-    /*rabbitConn.queue("", {}, function(q) {
-      // bind to notification exchange
-      q.bind("NotificationExchange", room + "/notification");
-      // listen to notification
-      q.subscribe(function(data) {
-        console.log(data);
-        // io.in(room).emit("NewNotification", data);
-        socket.emit("NewNotification", data);
-      });
-    });*/
   });
   socket.on("CreateChatMessage", async (room, message) => {
     // room = group_id
@@ -144,7 +133,6 @@ io.on("connection", socket => {
   socket.on("CreateNotification", async (room, type) => {
     const Group = mongoose.model("groups");
     const group = await Group.findById(room);
-    console.log(group.name);
     const Notification = mongoose.model("notifications");
     const notifications = [];
     var title;
@@ -164,7 +152,6 @@ io.on("connection", socket => {
       default:
         break;
     }
-    console.log(type);
     group._users.forEach(user_id => {
       if (user._id == user_id) return; // don't store notification for the user who made an action
       notifications.push(

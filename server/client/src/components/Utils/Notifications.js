@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FetchNotifications } from "../../actions";
+import { FetchNotifications, FetchGroups, JoinSocketRoom } from "../../actions";
 import Notification from "./Notification";
 import _ from "lodash";
+import onClickOutside from "react-onclickoutside";
 
 class Notifications extends Component {
   constructor(props) {
@@ -15,6 +16,9 @@ class Notifications extends Component {
       7
     );
   }
+  handleClickOutside = () => {
+    this.setState({ open: false });
+  };
   renderNotifications() {
     return _.map(this.props.notifications, notification => {
       return (
@@ -30,6 +34,18 @@ class Notifications extends Component {
       );
     });
   }
+  renderButton() {
+    var not_count = 0;
+    _.map(this.props.notifications, notification => {
+      if (!notification.seen) not_count++;
+    });
+    return (
+      <i
+        className={"fas fa-bell icon " + (not_count ? "not_seen" : "")}
+        onClick={() => this.setState({ open: !this.state.open })}
+      />
+    );
+  }
   LoadMore() {
     this.props.FetchNotifications(
       Object.keys(this.props.notifications).length,
@@ -39,10 +55,7 @@ class Notifications extends Component {
   render() {
     return (
       <li className="notifications">
-        <i
-          className="fas fa-bell icon"
-          onClick={() => this.setState({ open: !this.state.open })}
-        />
+        {this.renderButton()}
         <div
           className="notification-container"
           style={{ display: this.state.open ? "inline-block" : "none" }}
@@ -62,11 +75,11 @@ class Notifications extends Component {
   }
 }
 
-function mapStateToProps({ notifications }) {
-  return { notifications: notifications };
+function mapStateToProps({ notifications, groups }) {
+  return { notifications: notifications, groups: groups };
 }
 
 export default connect(
   mapStateToProps,
-  { FetchNotifications }
-)(Notifications);
+  { FetchNotifications, JoinSocketRoom, FetchGroups }
+)(onClickOutside(Notifications));

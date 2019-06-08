@@ -8,10 +8,12 @@ import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
 import { createMySocketMiddleware } from "./middlewares/socketIO";
 
+var socket_url = "http://localhost:5000";
+if (process.env.NODE_ENV === "production") socket_url = "/";
 const store = createStore(
   reducers,
   {},
-  applyMiddleware(reduxThunk, createMySocketMiddleware("/"))
+  applyMiddleware(reduxThunk, createMySocketMiddleware(socket_url))
 );
 
 ReactDOM.render(

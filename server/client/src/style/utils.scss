@@ -6,6 +6,7 @@
   & .right {
     & ul li {
       & i {
+        cursor: pointer;
         color: #bcbccb;
       }
       display: inline-block;
@@ -28,8 +29,8 @@
   }
   & .notifications {
     position: relative;
-    & .icon {
-      cursor: pointer;
+    & .not_seen {
+      color: #3b86ff;
     }
     & .notification-container {
       z-index: 99;
@@ -83,6 +84,7 @@
             border-radius: 50%;
             display: inline-block;
             font-size: 25px;
+            cursor: pointer;
             & i {
               padding-bottom: 10px;
               color: #808495;

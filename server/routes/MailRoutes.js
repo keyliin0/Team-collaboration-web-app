@@ -13,8 +13,6 @@ module.exports = app => {
     CheckToken,
     async (req, res) => {
       try {
-        console.log(req.params.label);
-        console.log(req.params.nextpage);
         const URL = mainURL + req.user.googleId + "/messages";
         const token =
           "?access_token=" +
@@ -31,7 +29,6 @@ module.exports = app => {
           res.send(request.data);
           return;
         }
-        console.log(request.data);
         var batch = new batchelor({
           uri: "https://www.googleapis.com/batch",
           method: "POST",

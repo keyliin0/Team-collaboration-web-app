@@ -1,4 +1,8 @@
 const passport = require("passport");
+const mongoose = require("mongoose");
+const User = mongoose.model("users");
+const ObjectId = require("mongoose").Types.ObjectId;
+const keys = require("../config/keys");
 
 module.exports = app => {
   app.get(
@@ -34,5 +38,14 @@ module.exports = app => {
         imgURL: user.imgURL
       });
     } else res.send(null);
+  });
+  app.get("/auth/demo", async (req, res) => {
+    const user = await User.findById(ObjectId(keys.DemoAccountId));
+    req.login(user, err => console.log(err));
+    res.redirect("/");
+  });
+  app.get("/api/logout", (req, res) => {
+    req.logout();
+    res.redirect("/");
   });
 };

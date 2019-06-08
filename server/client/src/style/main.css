@@ -55,6 +55,7 @@
     display: inline-block;
     margin: 10px; }
     .Utils .right ul li i {
+      cursor: pointer;
       color: #bcbccb; }
     .Utils .right ul li img {
       width: 40px;
@@ -69,8 +70,8 @@
       border-color: #ebebf2; }
   .Utils .notifications {
     position: relative; }
-    .Utils .notifications .icon {
-      cursor: pointer; }
+    .Utils .notifications .not_seen {
+      color: #3b86ff; }
     .Utils .notifications .notification-container {
       z-index: 99;
       position: absolute;
@@ -117,7 +118,8 @@
             margin-bottom: 10px;
             border-radius: 50%;
             display: inline-block;
-            font-size: 25px; }
+            font-size: 25px;
+            cursor: pointer; }
             .Utils .notifications .notification-container .list .item .icon i {
               padding-bottom: 10px;
               color: #808495; }
@@ -1184,6 +1186,115 @@
     margin-bottom: 10px; }
   .rename-modal button {
     cursor: pointer; }
+
+.landing {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px; }
+  .landing header {
+    height: 100vh; }
+    .landing header .bg-image {
+      background-image: url(../images/background-1.jpg);
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed; }
+    .landing header .overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.8;
+      background: #1c1d21; }
+  .landing .home-wrapper {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center; }
+    .landing .home-wrapper .content {
+      text-align: center; }
+      .landing .home-wrapper .content h1 {
+        color: white;
+        font-size: 54px;
+        font-weight: 700;
+        margin-top: 0px;
+        margin-bottom: 20px;
+        text-transform: uppercase; }
+      .landing .home-wrapper .content p {
+        color: white;
+        font-weight: 600; }
+      .landing .home-wrapper .content button {
+        cursor: pointer;
+        font-family: "Varela Round", sans-serif; }
+        .landing .home-wrapper .content button:hover {
+          opacity: 0.9; }
+      .landing .home-wrapper .content .white-btn {
+        color: #10161a;
+        padding: 10px 35px;
+        margin: 3px;
+        border: 2px solid transparent;
+        border-radius: 3px;
+        background-color: white;
+        transition: 0.2s opacity; }
+      .landing .home-wrapper .content .blue-btn {
+        background: #6195ff;
+        color: #fff;
+        padding: 10px 35px;
+        margin: 3px;
+        border: 2px solid transparent;
+        border-radius: 3px;
+        transition: 0.2s opacity; }
+  .landing section {
+    padding-top: 120px;
+    padding-bottom: 120px; }
+    .landing section .title {
+      text-align: center;
+      margin-top: 0px;
+      margin-bottom: 20px; }
+      .landing section .title::after {
+        margin: auto;
+        text-align: center;
+        content: "";
+        display: block;
+        height: 4px;
+        width: 40px;
+        background-color: #6195ff;
+        margin-top: 20px; }
+    .landing section .card {
+      text-align: center;
+      padding: 40px 20px;
+      border: 1px solid #eee;
+      margin: 15px 0px; }
+      .landing section .card i {
+        font-size: 36px;
+        color: #6195ff;
+        margin-bottom: 20px; }
+      .landing section .card h3 {
+        font-weight: 700;
+        margin-top: 0px;
+        margin-bottom: 20px; }
+      .landing section .card p {
+        font-family: "Varela Round", sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #868f9b; }
+  .landing footer {
+    background-color: #1c1d21; }
+    .landing footer .footer-copyright {
+      text-align: center;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #868f9b;
+      margin: 20px; }
 
 * {
   margin: 0;

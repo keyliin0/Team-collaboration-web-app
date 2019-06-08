@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
   FetchGroups,
-  JoinChatGroup,
+  JoinSocketRoom,
   SelectChatConversation,
   FetchChatMessages
 } from "../../actions";
@@ -10,14 +10,6 @@ import _ from "lodash";
 import TimeAgo from "timeago-react";
 
 class Chat_List extends Component {
-  componentWillMount() {
-    this.props.FetchGroups().then(() => {
-      const { groups } = this.props;
-      _.map(groups, group => {
-        this.props.JoinChatGroup(group._id);
-      });
-    });
-  }
   HandleClick(group_id, name, imgURL) {
     this.props.SelectChatConversation(group_id, name, imgURL);
     this.props.FetchChatMessages(group_id, 0, 15);
@@ -77,5 +69,5 @@ function mapStateToProps({ chat, groups }) {
 
 export default connect(
   mapStateToProps,
-  { FetchGroups, JoinChatGroup, SelectChatConversation, FetchChatMessages }
+  { FetchGroups, JoinSocketRoom, SelectChatConversation, FetchChatMessages }
 )(Chat_List);
