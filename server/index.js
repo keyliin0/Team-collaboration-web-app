@@ -78,97 +78,102 @@ io.on("connection", socket => {
   let cookieString = socket.request.headers.cookie;
   const req = { headers: { cookie: cookieString } };
   var user;
-  cookiesession({ keys: [keys.cookiekey] })(req, {}, () => {
-    user = req.session.user;
-  });
-  socket.on("join", room => {
-    socket.join(room);
-    // chat queue
-    rabbitConn.queue("", { exclusive: true }, function(q) {
-      //Bind to chatExchange w/ "#" or "" binding key to listen to all messages.
-      q.bind("chatExchange", room + "/chat");
-      q.bind("NotificationExchange", room + "/notification");
-      //Subscribe When a message comes, send it back to browser
-      q.subscribe(function(message) {
-        switch (message.type) {
-          case "CHAT":
-            socket.emit("NewMessage", message.data);
-            return;
-          case "NOTIFICATION":
-            if (message.data[user._id])
-              socket.emit("NewNotification", message.data[user._id]);
-          default:
-            return;
+  cookiesession({ keys: [keys.cookiekey] })(req, {}, async () => {
+    // for demo account
+    if (req.session.passport.user) {
+      const User = mongoose.model("users");
+      const ObjectId = require("mongoose").Types.ObjectId;
+      user = await User.findById(ObjectId(req.session.passport.user));
+    } else user = req.session.user;
+    socket.on("join", room => {
+      socket.join(room);
+      // chat queue
+      rabbitConn.queue("", { exclusive: true }, function(q) {
+        //Bind to chatExchange w/ "#" or "" binding key to listen to all messages.
+        q.bind("chatExchange", room + "/chat");
+        q.bind("NotificationExchange", room + "/notification");
+        //Subscribe When a message comes, send it back to browser
+        q.subscribe(function(message) {
+          switch (message.type) {
+            case "CHAT":
+              socket.emit("NewMessage", message.data);
+              return;
+            case "NOTIFICATION":
+              if (message.data[user._id])
+                socket.emit("NewNotification", message.data[user._id]);
+            default:
+              return;
+          }
+        });
+      });
+    });
+    socket.on("CreateChatMessage", async (room, message) => {
+      // room = group_id
+      var data = {
+        author: user._id,
+        group_id: room,
+        message: message,
+        timestamp: Date.now()
+      };
+      const Chat = mongoose.model("chat");
+      const Message = new Chat(data);
+      Message.save();
+      data._id = Message.id;
+      data.author = {
+        _id: user._id,
+        imgURL: user.imgURL,
+        firstname: user.firstname,
+        lastname: user.lastname
+      };
+      chatExchange.publish(room + "/chat", { data: data, type: "CHAT" });
+      const Group = mongoose.model("groups");
+      await Group.findByIdAndUpdate(room, {
+        last_chat_message: {
+          message: message,
+          timestamp: Date.now()
         }
       });
     });
-  });
-  socket.on("CreateChatMessage", async (room, message) => {
-    // room = group_id
-    var data = {
-      author: user._id,
-      group_id: room,
-      message: message,
-      timestamp: Date.now()
-    };
-    const Chat = mongoose.model("chat");
-    const Message = new Chat(data);
-    Message.save();
-    data._id = Message.id;
-    data.author = {
-      _id: user._id,
-      imgURL: user.imgURL,
-      firstname: user.firstname,
-      lastname: user.lastname
-    };
-    chatExchange.publish(room + "/chat", { data: data, type: "CHAT" });
-    const Group = mongoose.model("groups");
-    await Group.findByIdAndUpdate(room, {
-      last_chat_message: {
-        message: message,
-        timestamp: Date.now()
+    socket.on("CreateNotification", async (room, type) => {
+      const Group = mongoose.model("groups");
+      const group = await Group.findById(room);
+      const Notification = mongoose.model("notifications");
+      const notifications = [];
+      var title;
+      switch (type) {
+        case "MODIFY_TASK":
+          title = "A task was modified in " + group.name;
+          break;
+        case "ADD_TASK":
+          title = "A task was added in " + group.name;
+          break;
+        case "MODIFY_EVENT":
+          title = "An event was modified  in " + group.name;
+          break;
+        case "ADD_EVENT":
+          title = "An event was added in " + group.name;
+          break;
+        default:
+          break;
       }
+      group._users.forEach(user_id => {
+        if (user._id == user_id) return; // don't store notification for the user who made an action
+        notifications.push(
+          new Notification({
+            title: title,
+            user_id: user_id,
+            group_id: group._id,
+            seen: false,
+            type: type,
+            timestamp: Date.now()
+          })
+        );
+      });
+      await Notification.insertMany(notifications);
+      NotificationExchange.publish(room + "/notification", {
+        data: _.mapKeys(notifications, "user_id"),
+        type: "NOTIFICATION"
+      }); // send user_id to skip his own notification
     });
-  });
-  socket.on("CreateNotification", async (room, type) => {
-    const Group = mongoose.model("groups");
-    const group = await Group.findById(room);
-    const Notification = mongoose.model("notifications");
-    const notifications = [];
-    var title;
-    switch (type) {
-      case "MODIFY_TASK":
-        title = "A task was modified in " + group.name;
-        break;
-      case "ADD_TASK":
-        title = "A task was added in " + group.name;
-        break;
-      case "MODIFY_EVENT":
-        title = "An event was modified  in " + group.name;
-        break;
-      case "ADD_EVENT":
-        title = "An event was added in " + group.name;
-        break;
-      default:
-        break;
-    }
-    group._users.forEach(user_id => {
-      if (user._id == user_id) return; // don't store notification for the user who made an action
-      notifications.push(
-        new Notification({
-          title: title,
-          user_id: user_id,
-          group_id: group._id,
-          seen: false,
-          type: type,
-          timestamp: Date.now()
-        })
-      );
-    });
-    await Notification.insertMany(notifications);
-    NotificationExchange.publish(room + "/notification", {
-      data: _.mapKeys(notifications, "user_id"),
-      type: "NOTIFICATION"
-    }); // send user_id to skip his own notification
   });
 });
