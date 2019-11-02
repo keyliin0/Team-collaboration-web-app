@@ -27,7 +27,7 @@
     "express": "^4.16.3",
     "install": "^0.12.2",
     "lodash": "^4.17.11",
-    "mongoose": "^4.13.17",
+    "mongoose": "^5.7.5",
     "multer": "^1.4.1",
     "node-amqp": "^1.2.1",
     "nodemon": "^1.18.4",
